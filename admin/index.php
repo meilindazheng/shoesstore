@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
     <!-- Link CSS -->
     <link rel="stylesheet" href="../style.css">
+    <!-- Font Awesome Link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
 </head>
 <body>
     <div class="container-fluid p-0">
@@ -44,7 +46,7 @@
                         </a>
                     </button>
                     <button class="btn btn-sm"  style="background-color: #344055;">
-                        <a href="" class="btn text-white ">
+                        <a href="index.php?insert_category" class="btn text-white ">
                             Insert Categories
                         </a>
                     </button>
@@ -54,7 +56,7 @@
                         </a>
                     </button>
                     <button class="btn btn-sm"  style="background-color: #344055;">
-                        <a href="" class="btn text-white">
+                        <a href="index.php?insert_brand" class="btn text-white">
                             Insert Brand
                         </a>
                     </button>
@@ -86,6 +88,17 @@
                 </div>
             </div>
         </div>
+    </div>
+    <!-- Fourth Child -->
+    <div class="container my-5">
+        <?php
+            if(isset($_GET['insert_category'])){
+                include('insert_categories.php');
+            }
+            if(isset($_GET['insert_brand'])){
+                include('insert_brands.php');
+            }
+        ?>
     </div>
     <!-- Last Content -->
     <div class="p-1" style="background-color: #eeeee4; position: absolute; bottom:0; width:100%">
