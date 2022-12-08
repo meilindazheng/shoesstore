@@ -1,3 +1,6 @@
+<?php
+    include('includes/connect.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -72,7 +75,7 @@
             <div class="row">
                 <div class="col-md-4 mb-2">
                     <div class="card">
-                        <img class="card-img-top" style="height:400px" src="./images/nike_1.jpg" alt="Card image cap">
+                        <img class="card-img-top"style="height:400px;" src="./images/nike_1.jpeg" alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title">Card title</h5>
                             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -83,7 +86,7 @@
                 </div>
                 <div class="col-md-4 mb-2">
                     <div class="card">
-                        <img class="card-img-top"style="height:400px" src="./images/nike_2.jpg" alt="Card image cap">
+                        <img class="card-img-top"style="height:400px;" src="./images/nike_2.jpeg" alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title">Card title</h5>
                             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -94,7 +97,7 @@
                 </div>
                 <div class="col-md-4 mb-2">
                     <div class="card">
-                        <img class="card-img-top"style="height:400px" src="./images/nike_3.jpg" alt="Card image cap">
+                        <img class="card-img-top"style="height:400px;" src="./images/nike_3.jpeg" alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title">Card title</h5>
                             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -105,7 +108,7 @@
                 </div>
                 <div class="col-md-4 mb-2">
                     <div class="card">
-                        <img class="card-img-top"style="height:400px" src="./images/nike_4.jpg" alt="Card image cap">
+                        <img class="card-img-top" style="height:400px;"src="./images/nike_4.jpeg" alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title">Card title</h5>
                             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -116,7 +119,7 @@
                 </div>
                 <div class="col-md-4 mb-2">
                     <div class="card">
-                        <img class="card-img-top" style="height:400px; "src="./images/nike_5.jpg" alt="Card image cap">
+                        <img class="card-img-top"style="height:400px;"src="./images/nike_5.jpeg" alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title">Card title</h5>
                             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -127,7 +130,7 @@
                 </div>
                 <div class="col-md-4 mb-2">
                     <div class="card">
-                        <img class="card-img-top"style="height:400px" src="./images/nike_6.jpg" alt="Card image cap">
+                        <img class="card-img-top" style="height:400px;"src="./images/nike_6.jpeg" alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title">Card title</h5>
                             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -144,33 +147,38 @@
                 <li class="nav-item" style="background-color: #f2f2f3;">
                     <a href="#" class="nav-link"><h6>Brand</h6></a>
                 </li>
-                <li class="nav-item text-white">
-                    <a href="#" class="nav-link">Nike</a>
-                </li>
-                <li class="nav-item text-white">
-                    <a href="#" class="nav-link">Adidas</a>
-                </li>
-                <li class="nav-item text-white">
-                    <a href="#" class="nav-link">Puma</a>
-                </li>
-                <li class="nav-item text-white">
-                    <a href="#" class="nav-link">Converse</a>
-                </li>
+                <?php
+                    $select_brands = "SELECT * FROM `brands`";
+                    $result_brands = mysqli_query($conn,$select_brands);
+                    while($row_data = mysqli_fetch_assoc($result_brands)){
+                        $brand_title = $row_data['brand_title'];
+                        $brand_id = $row_data['brand_id'];
+                        echo " 
+                            <li class='nav-item text-white'>
+                            <a href='index.php?brand=$brand_id' class='nav-link'>$brand_title</a>
+                            </li>"
+                        ;
+                    }
+                ?>
             </ul>
             <!-- display sidenav [category] -->
             <ul class="navbar-nav me-auto text-center">
                 <li class="nav-item" style="background-color: #f2f2f3;">
                     <a href="#" class="nav-link"><h6>Category</h6></a>
                 </li>
-                <li class="nav-item text-white">
-                    <a href="#" class="nav-link">Run</a>
-                </li>
-                <li class="nav-item text-white">
-                    <a href="#" class="nav-link">Sandal</a>
-                </li>
-                <li class="nav-item text-white">
-                    <a href="#" class="nav-link">Walk</a>
-                </li>
+                <?php
+                    $select_categories = "SELECT * FROM `categories`";
+                    $result_categories = mysqli_query($conn,$select_categories);
+                    while($row_data = mysqli_fetch_assoc($result_categories)){
+                        $category_title = $row_data['category_title'];
+                        $category_id = $row_data['category_id'];
+                        echo " 
+                            <li class='nav-item text-white'>
+                            <a href='index.php?category=$category_id' class='nav-link'>$category_title</a>
+                            </li>"
+                        ;
+                    }
+                ?>
             </ul>
         </div>
     </div>

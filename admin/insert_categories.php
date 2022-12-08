@@ -27,9 +27,9 @@
         }
     }
 ?>
-
+<h2 class="text-center">Insert Categories</h2>
 <form action="" method="post" class="mb-2">
-    <div class="input-group mb-2 w-90">
+    <div class="input-group m-2 w-90">
         <span class="input-group-text text-white" id="basic-addon1"  style="background-color: #344055;">
             <i class="fa-solid fa-receipt"></i>
         </span>
