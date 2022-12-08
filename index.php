@@ -79,8 +79,8 @@
                         <div class="card-body">
                             <h5 class="card-title">Card title</h5>
                             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn" style="background-color:#abdbe3;">Add to Cart</a>
-                            <a href="#" class="btn" style="background-color:#f1d49a;">View More</a>
+                            <a href="#" class="btn" style="background-color:black; color:white;" >Add to Cart</a>
+                            <a href="#" class="btn" style="background-color:white; color:black; border: 1px solid black;">View More</a>
                         </div>
                     </div>
                 </div>
@@ -90,8 +90,8 @@
                         <div class="card-body">
                             <h5 class="card-title">Card title</h5>
                             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn" style="background-color:#abdbe3;">Add to cart</a>
-                            <a href="#" class="btn" style="background-color:#f1d49a;">View More</a>
+                            <a href="#" class="btn" style="background-color:black; color:white;" >Add to cart</a>
+                            <a href="#" class="btn" style="background-color:white; color:black; border: 1px solid black;">View More</a>
                         </div>
                     </div>
                 </div>
@@ -101,8 +101,8 @@
                         <div class="card-body">
                             <h5 class="card-title">Card title</h5>
                             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn" style="background-color:#abdbe3;">Add to cart</a>
-                            <a href="#" class="btn" style="background-color:#f1d49a;">View More</a>
+                            <a href="#" class="btn" style="background-color:black; color:white;" >Add to cart</a>
+                            <a href="#" class="btn" style="background-color:white; color:black; border: 1px solid black;">View More</a>
                         </div>
                     </div>
                 </div>
@@ -112,8 +112,8 @@
                         <div class="card-body">
                             <h5 class="card-title">Card title</h5>
                             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn" style="background-color:#abdbe3;">Add to cart</a>
-                            <a href="#" class="btn" style="background-color:#f1d49a;">View More</a>
+                            <a href="#" class="btn" style="background-color:black; color:white;" >Add to cart</a>
+                            <a href="#" class="btn" style="background-color:white; color:black; border: 1px solid black;">View More</a>
                         </div>
                     </div>
                 </div>
@@ -123,8 +123,8 @@
                         <div class="card-body">
                             <h5 class="card-title">Card title</h5>
                             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn" style="background-color:#abdbe3;">Add to cart</a>
-                            <a href="#" class="btn" style="background-color:#f1d49a;">View More</a>
+                            <a href="#" class="btn" style="background-color:black; color:white;" >Add to cart</a>
+                            <a href="#" class="btn" style="background-color:white; color:black; border: 1px solid black;">View More</a>
                         </div>
                     </div>
                 </div>
@@ -134,8 +134,8 @@
                         <div class="card-body">
                             <h5 class="card-title">Card title</h5>
                             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn" style="background-color:#abdbe3;">Add to cart</a>
-                            <a href="#" class="btn" style="background-color:#f1d49a;">View More</a>
+                            <a href="#" class="btn" style="background-color:black; color:white;" >Add to cart</a>
+                            <a href="#" class="btn" style="background-color:white; color:black; border: 1px solid black;">View More</a>
                         </div>
                     </div>
                 </div>

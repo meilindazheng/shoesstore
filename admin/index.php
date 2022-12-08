@@ -36,7 +36,7 @@
             <div class="col-md-12 p-2">
                 <div class="text-center">
                     <button class="btn btn-sm"  style="background-color: #344055;" style="background-color: #344055;">
-                        <a href="" class="btn text-white">
+                        <a href="insert_product.php" class="btn text-white">
                             Insert Products
                         </a>
                     </button>
