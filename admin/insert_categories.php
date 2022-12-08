@@ -2,7 +2,7 @@
     include('../includes/connect.php');
     if(isset($_POST['insert_cat'])){
         $category_title = $_POST['cat_title'];
-
+        $brand_id = $_POST['brand_id'];
         // select query
         $select_query = "SELECT * FROM `categories` WHERE category_title = '$category_title'";
         $result_select = mysqli_query($conn,$select_query);
@@ -15,7 +15,7 @@
             ";
         }else{
             // insert query
-            $insert_query = "INSERT INTO `categories` (category_title) values ('$category_title')";
+            $insert_query = "INSERT INTO `categories` values ('','$category_title','$brand_id')";
             $result = mysqli_query($conn,$insert_query);
             if($result){
                 echo "
@@ -34,6 +34,12 @@
             <i class="fa-solid fa-receipt"></i>
         </span>
         <input type="text" class="form-control"name="cat_title" placeholder="Category" aria-label="Insert Categories" aria-describedby="basic-addon1">
+
+        <span class="input-group-text text-white" id="basic-addon1"  style="background-color: #344055;">
+            <i class="fa-solid fa-receipt"></i>
+        </span>
+        <input type="text" class="form-control"name="brand_id" placeholder="Brand ID" aria-label="Insert Categories" aria-describedby="basic-addon1">
+
     </div>
     <div class="input-group w-10 mb-2">
         <input type="submit" class="text-white border-0 p-2 my-2 rounded"name="insert_cat" value="Insert Categories" style="background-color: #344055;" aria-label="Insert Categories" aria-describedby="basic-addon1"  style="background-color: #344055;">
