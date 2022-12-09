@@ -12,8 +12,24 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
     <!-- Font Awesome Link -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
-    <!-- Link CSS -->
-    <link rel="stylesheet" href="style.css">
+    <style>
+        .nav-link{
+            text-decoration: none;
+        }
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .logo{
+            height: 4%;
+            width: 4%;
+        }
+        .card:hover{
+            box-shadow: 8px 8px 8px blue;
+            transform:scale(1.2);
+        }
+    </style>
 </head>
 <body>
     <!-- Navbar -->
@@ -75,7 +91,7 @@
             <div class="row">
                 <div class="col-md-4 mb-2">
                     <div class="card">
-                        <img class="card-img-top"style="height:400px;" src="./images/nike_1.jpeg" alt="Card image cap">
+                        <!-- <img class="card-img-top"style="height:400px;" src="./images/nike_1.jpeg" alt="Card image cap"> -->
                         <div class="card-body">
                             <h5 class="card-title">Card title</h5>
                             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
