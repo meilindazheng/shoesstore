@@ -1,3 +1,6 @@
+<?php
+    include('../includes/connect.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,20 +41,34 @@
             <div class="form-outline mb-3 w-50 m-auto">
                 <select name="product_categories" id="" class="form-select">
                     <option value="">Select a Category</option>
-                    <option value="">Category 1</option>
-                    <option value="">Category 2</option>
-                    <option value="">Category 3</option>
-                    <option value="">Category 4</option>
+                    <?php
+                        $select_categories = "SELECT * FROM `categories`";
+                        $result_categories = mysqli_query($conn,$select_categories);
+                        while($row_data = mysqli_fetch_assoc($result_categories)){
+                            $category_title = $row_data['category_title'];
+                            $category_id = $row_data['category_id'];
+                            echo " 
+                            <option value='$category_id'>$category_title</option>
+                            ";
+                        }
+                    ?>
                 </select>
             </div>
             <!-- brands -->
             <div class="form-outline mb-3 w-50 m-auto">
                 <select name="product_brand" id="" class="form-select">
                     <option value="">Select a Brand</option>
-                    <option value="">Brand 1</option>
-                    <option value="">Brand 2</option>
-                    <option value="">Brand 3</option>
-                    <option value="">Brand 4</option>
+                    <?php
+                        $select_brands = "SELECT * FROM `brands`";
+                        $result_brands = mysqli_query($conn, $select_brands);
+                        while($row_data = mysqli_fetch_assoc($result_brands)){
+                            $brand_title = $row_data['brand_title'];
+                            $brand_id = $row_data['brand_id'];
+                            echo "
+                            <option value='$brand_id'>$brand_title</option>
+                            ";
+                        }
+                    ?>
                 </select>
             </div>
             <!-- Product Image 1 -->
