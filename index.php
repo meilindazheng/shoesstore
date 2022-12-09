@@ -26,8 +26,9 @@
             width: 4%;
         }
         .card:hover{
-            box-shadow: 8px 8px 8px blue;
-            transform:scale(1.2);
+            box-shadow:  0 8px 8px -6px black;
+            transform:scale(1.01);
+            transition: all ease 0.3s;
         }
     </style>
 </head>
@@ -88,75 +89,37 @@
     <div class="row">
         <div class="col-md-10">
             <!-- display products -->
-            <div class="row">
-                <div class="col-md-4 mb-2">
-                    <div class="card">
-                        <!-- <img class="card-img-top"style="height:400px;" src="./images/nike_1.jpeg" alt="Card image cap"> -->
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn" style="background-color:black; color:white;" >Add to Cart</a>
-                            <a href="#" class="btn" style="background-color:white; color:black; border: 1px solid black;">View More</a>
+            <div class="row px-3">
+                <!-- fetching products from database -->
+                <?php
+                    $select_query = "SELECT * FROM `products` ORDER BY rand() limit 0,6";
+                    $result_query = mysqli_query($conn,$select_query);
+                    while($row_data = mysqli_fetch_assoc($result_query)){
+                        $product_id = $row_data['product_id'];
+                        $product_title = $row_data['product_title'];
+                        $product_description = $row_data['product_description'];
+                        $category_id = $row_data['category_id'];
+                        $brand_id = $row_data['brand_id'];
+                        $product_image1 = $row_data['product_image1'];
+                        $product_price = $row_data['product_price'];
+                        echo"
+                        <div class='col-md-4 mb-2'>
+                            <div class='card'>
+                                <img class='card-img-top'style='height:400px;' src='./admin/product_images/$product_image1' alt='Card image cap'>
+                                <div class='card-body'>
+                                    <h5 class='card-title'>$product_title</h5>
+                                    <p class='card-text'>$product_description</p>
+                                    <a href='#' class='btn' style='background-color:black; color:white;' >Add to Cart</a>
+                                    <a href='#' class='btn' style='background-color:white; color:black; border: 1px solid black;'>View More</a>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-2">
-                    <div class="card">
-                        <img class="card-img-top"style="height:400px;" src="./images/nike_2.jpeg" alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn" style="background-color:black; color:white;" >Add to cart</a>
-                            <a href="#" class="btn" style="background-color:white; color:black; border: 1px solid black;">View More</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-2">
-                    <div class="card">
-                        <img class="card-img-top"style="height:400px;" src="./images/nike_3.jpeg" alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn" style="background-color:black; color:white;" >Add to cart</a>
-                            <a href="#" class="btn" style="background-color:white; color:black; border: 1px solid black;">View More</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-2">
-                    <div class="card">
-                        <img class="card-img-top" style="height:400px;"src="./images/nike_4.jpeg" alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn" style="background-color:black; color:white;" >Add to cart</a>
-                            <a href="#" class="btn" style="background-color:white; color:black; border: 1px solid black;">View More</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-2">
-                    <div class="card">
-                        <img class="card-img-top"style="height:400px;"src="./images/nike_5.jpeg" alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn" style="background-color:black; color:white;" >Add to cart</a>
-                            <a href="#" class="btn" style="background-color:white; color:black; border: 1px solid black;">View More</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-2">
-                    <div class="card">
-                        <img class="card-img-top" style="height:400px;"src="./images/nike_6.jpeg" alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn" style="background-color:black; color:white;" >Add to cart</a>
-                            <a href="#" class="btn" style="background-color:white; color:black; border: 1px solid black;">View More</a>
-                        </div>
-                    </div>
-                </div>
+                        ";
+                    };
+                ?>
             </div>
         </div>
+        <!-- row ends -->
         <div class="col-md-2 p-0" style="background-color: #344055;">
             <!-- display sidenav [brand] -->
             <ul class="navbar-nav me-auto text-center">
