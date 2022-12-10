@@ -8,9 +8,13 @@
         $product_brand = $_POST['product_brand'];
         // Accessing Image
         $product_image1 = $_FILES['product_image1']['name'];
+        $product_image2 = $_FILES['product_image2']['name'];
+        $product_image3 = $_FILES['product_image3']['name'];
 
         // Accessing Image Temp Name
         $temp_image1 = $_FILES['product_image1']['tmp_name'];
+        $temp_image2 = $_FILES['product_image2']['tmp_name'];
+        $temp_image3 = $_FILES['product_image3']['tmp_name'];
         
         $product_price = $_POST['product_price'];
         $product_status = 'true';
@@ -25,10 +29,11 @@
             exit();
         }else{
             move_uploaded_file($temp_image1,"./product_images/$product_image1");
-
+            move_uploaded_file($temp_image2,"./product_images/$product_image2");
+            move_uploaded_file($temp_image3,"./product_images/$product_image3");
             // insert product
-            $insert_products = "INSERT INTO `products`(product_title,product_description,product_keywords, category_id,brand_id, product_image1,product_price,date,status)
-            VALUES('$product_title','$product_description','$product_keyword','$product_category','$product_brand','$product_image1','$product_price',NOW(),'$product_status')";
+            $insert_products = "INSERT INTO `products`(product_title,product_description,product_keywords, category_id,brand_id, product_image1,product_image2,product_image3,product_price,date,status)
+            VALUES('$product_title','$product_description','$product_keyword','$product_category','$product_brand','$product_image1','$product_image2','$product_image3','$product_price',NOW(),'$product_status')";
 
             $result_query = mysqli_query($conn,$insert_products);
             if($result_query){
@@ -115,6 +120,16 @@
             <div class="form-outline mb-3 w-50 m-auto">
                 <label for="product_image1" class="form-label"><p class="text-white mb-0">Product Image </p></label>
                 <input type="file" name ="product_image1" id="product_image1" class="form-control"required="required"></input>
+            </div>
+            <!-- Product Image 2 -->
+            <div class="form-outline mb-3 w-50 m-auto">
+                <label for="product_image2" class="form-label"><p class="text-white mb-0">Product Image </p></label>
+                <input type="file" name ="product_image2" id="product_image2" class="form-control"required="required"></input>
+            </div>
+            <!-- Product Image 3 -->
+            <div class="form-outline mb-3 w-50 m-auto">
+                <label for="product_image3" class="form-label"><p class="text-white mb-0">Product Image </p></label>
+                <input type="file" name ="product_image3" id="product_image3" class="form-control"required="required"></input>
             </div>
             <!-- Product Price -->
             <div class="form-outline mb-3 w-50 m-auto">

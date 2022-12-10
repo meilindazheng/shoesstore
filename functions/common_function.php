@@ -26,7 +26,7 @@ include('./includes/connect.php');
                                 <h5 class='card-title'>$product_title</h5>
                                 <p class='card-text'>$product_description</p>
                                 <a href='#' class='btn' style='background-color:black; color:white;' >Add to Cart</a>
-                                <a href='#' class='btn' style='background-color:white; color:black; border: 1px solid black;'>View More</a>
+                                <a href='product_details.php?product_id=$product_id' class='btn' style='background-color:white; color:black; border: 1px solid black;'>View More</a>
                             </div>
                         </div>
                     </div>
@@ -64,7 +64,7 @@ include('./includes/connect.php');
                             <h5 class='card-title'>$product_title</h5>
                             <p class='card-text'>$product_description</p>
                             <a href='#' class='btn' style='background-color:black; color:white;' >Add to Cart</a>
-                            <a href='#' class='btn' style='background-color:white; color:black; border: 1px solid black;'>View More</a>
+                            <a href='product_details.php?product_id=$product_id' class='btn' style='background-color:white; color:black; border: 1px solid black;'>View More</a>
                         </div>
                     </div>
                 </div>
@@ -116,7 +116,7 @@ include('./includes/connect.php');
                             <h5 class='card-title'>$product_title</h5>
                             <p class='card-text'>$product_description</p>
                             <a href='#' class='btn' style='background-color:black; color:white;' >Add to Cart</a>
-                            <a href='#' class='btn' style='background-color:white; color:black; border: 1px solid black;'>View More</a>
+                            <a href='product_details.php?product_id=$product_id' class='btn' style='background-color:white; color:black; border: 1px solid black;'>View More</a>
                         </div>
                     </div>
                 </div>
@@ -168,7 +168,7 @@ include('./includes/connect.php');
                             <h5 class='card-title'>$product_title</h5>
                             <p class='card-text'>$product_description</p>
                             <a href='#' class='btn' style='background-color:black; color:white;' >Add to Cart</a>
-                            <a href='#' class='btn' style='background-color:white; color:black; border: 1px solid black;'>View More</a>
+                            <a href='product_details.php?product_id=$product_id' class='btn' style='background-color:white; color:black; border: 1px solid black;'>View More</a>
                         </div>
                     </div>
                 </div>
@@ -201,12 +201,105 @@ include('./includes/connect.php');
                                 <h5 class='card-title'>$product_title</h5>
                                 <p class='card-text'>$product_description</p>
                                 <a href='#' class='btn' style='background-color:black; color:white;' >Add to Cart</a>
-                                <a href='#' class='btn' style='background-color:white; color:black; border: 1px solid black;'>View More</a>
+                                <a href='product_details.php?product_id=$product_id' class='btn' style='background-color:white; color:black; border: 1px solid black;'>View More</a>
                             </div>
                         </div>
                     </div>
                     ";
                 };
+            }
+        }
+    }
+
+    // view details logic function
+    function view_details(){
+        global $conn;
+        // condition to check isset
+        if(isset($_GET['product_id'])){
+            if(!isset($_GET['category'])){
+                if(!isset($_GET['brand'])){
+                    $product_id = $_GET['product_id'];
+                    $select_query = "SELECT * FROM `products`WHERE product_id = $product_id ";
+                    $result_query = mysqli_query($conn,$select_query);
+                    while($row_data = mysqli_fetch_assoc($result_query)){
+                        $product_id = $row_data['product_id'];
+                        $product_title = $row_data['product_title'];
+                        $product_description = $row_data['product_description'];
+                        $category_id = $row_data['category_id'];
+                        $brand_id = $row_data['brand_id'];
+                        $product_image1 = $row_data['product_image1'];
+                        $product_image2 = $row_data['product_image2'];
+                        $product_image3 = $row_data['product_image3'];
+                        $product_price = $row_data['product_price'];
+                        echo"
+                        <div class='col-md-4'>
+                            <!-- card -->
+                            <div class='card'>
+                                <img class='card-img-top'style='height:400px;' src='./admin/product_images/$product_image1' alt='Card image cap'>
+                                <div class='card-body'>
+                                    <h5 class='card-title'>$product_title</h5>
+                                    <p class='card-text'>$product_description</p>
+                                    <a href='#' class='btn' style='background-color:black; color:white;' >Add to Cart</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class='col-md-8'>
+                            <!-- related products -->
+                            <div class='row'>
+                                <div class='col-md-12 mb-3'>
+                                    <h4 class='text-center'>Similar Products</h4>
+                                    <h6 class='text-center'>All Size Ready! Do Notes on Order</h6>
+                                </div>
+                                <div class='col-md-6 text-center mb-1'>
+                                    <img class='card-img-top'style='height:300px; width:300px;' src='./admin/product_images/$product_image2' alt='Card image cap'>
+                                </div>
+                                <div class='col-md-6 text-center mb-1'>
+                                    <img class='card-img-top'style='height:300px; width:300px;' src='./admin/product_images/$product_image3' alt='Card image cap'>
+                                </div>
+                                <div class='col-md-12 text-center'>
+                                    <h4 class='text-center'>Size charts</h4>
+                                    <table class='table table-striped'>
+                                        <thead class='thead-dark'>
+                                            <tr>
+                                            <th>UK</th>
+                                            <th>USA</th>
+                                            <th>AUS</th>
+                                            <th>EU</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>4</td>
+                                                <td>4</td>
+                                                <td>4<sup>1</sup>/<sub>2</sub></td>
+                                                <td>37</td>
+                                            </tr>
+                                            <tr>
+                                                <td>5</td>
+                                                <td>5</td>
+                                                <td>5<sup>1</sup>/<sub>2</sub></td>
+                                                <td>38</td>
+                                            </tr>
+                                            <tr>
+                                                <td>6</td>
+                                                <td>6</td>
+                                                <td>6<sup>1</sup>/<sub>2</sub></td>
+                                                <td>39</td>
+                                            </tr>
+                                            <tr>
+                                                <td>7</td>
+                                                <td>7</td>
+                                                <td>7<sup>1</sup>/<sub>2</sub></td>
+                                                <td>40</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>                                
+                                </div>
+                            </div>
+                        </div>
+                        ";
+                    };
+                }
             }
         }
     }
