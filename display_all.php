@@ -93,7 +93,7 @@
             <div class="row px-3">
                 <!-- fetching products from database -->
                 <?php
-                    getproducts();
+                    get_all_products();
                     get_unique_categories();
                     get_unique_brands();
                 ?>
@@ -111,7 +111,7 @@
                 ?>
             </ul>
             <!-- display sidenav [category] -->
-            <ul class="navbar-nav me-auto text-center">
+            <ul class="navbar-nav text-center">
                 <li class="nav-item" style="background-color: #f2f2f3;">
                     <a href="#" class="nav-link"><h6>Category</h6></a>
                 </li>
@@ -122,6 +122,7 @@
         </div>
     </div>
     <!-- Last Child -->
+    <!-- Include Footer -->
     <?php
         include('./includes/footer.php');
     ?>

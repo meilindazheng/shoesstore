@@ -35,8 +35,8 @@
 </head>
 <body>
     <!-- Navbar -->
-    <div class="container-fluid p-0">
-        <nav class="navbar navbar-expand-lg navbar-fixed-top" style="background-color: #344055;">
+    <div class="container-fluid p-0" >
+        <nav class="navbar navbar-expand-lg navbar-fixed-top" style="background-color: #344055;" style="position:fixed;">
             <div class="container-fluid">
                 <img src="./images/logo.png" alt="" class="logo">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
