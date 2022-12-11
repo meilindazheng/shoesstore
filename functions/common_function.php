@@ -362,4 +362,21 @@ include('./includes/connect.php');
         }
     }
 
+    // function to get cart item number
+    function cart_item(){
+        if(isset($_GET['add_to_cart'])){
+            global $conn;
+            $get_ip_adds = getIPAddress();
+            $select_query = "SELECT * FROM `cart_details` WHERE ip_address = '$get_ip_adds'";
+            $result_query = mysqli_query($conn,$select_query);
+            $num_of_rows = mysqli_num_rows($result_query);
+        }else{
+            global $conn;
+            $get_ip_adds = getIPAddress();
+            $select_query = "SELECT * FROM `cart_details` WHERE ip_address = '$get_ip_adds'";
+            $result_query = mysqli_query($conn,$select_query);
+            $num_of_rows = mysqli_num_rows($result_query);
+        }
+        echo $num_of_rows;
+    }
 ?>
