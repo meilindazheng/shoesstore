@@ -25,7 +25,7 @@ include('./includes/connect.php');
                             <div class='card-body'>
                                 <h5 class='card-title'>$product_title</h5>
                                 <p class='card-text'>$product_description</p>
-                                <a href='#' class='btn' style='background-color:black; color:white;' >Add to Cart</a>
+                                <a href='index.php?add_to_cart=$product_id' class='btn' style='background-color:black; color:white;' >Add to Cart</a>
                                 <a href='product_details.php?product_id=$product_id' class='btn' style='background-color:white; color:black; border: 1px solid black;'>View More</a>
                             </div>
                         </div>
@@ -63,7 +63,7 @@ include('./includes/connect.php');
                         <div class='card-body'>
                             <h5 class='card-title'>$product_title</h5>
                             <p class='card-text'>$product_description</p>
-                            <a href='#' class='btn' style='background-color:black; color:white;' >Add to Cart</a>
+                            <a href='index.php?add_to_cart=$product_id' class='btn' style='background-color:black; color:white;' >Add to Cart</a>
                             <a href='product_details.php?product_id=$product_id' class='btn' style='background-color:white; color:black; border: 1px solid black;'>View More</a>
                         </div>
                     </div>
@@ -115,7 +115,7 @@ include('./includes/connect.php');
                         <div class='card-body'>
                             <h5 class='card-title'>$product_title</h5>
                             <p class='card-text'>$product_description</p>
-                            <a href='#' class='btn' style='background-color:black; color:white;' >Add to Cart</a>
+                            <a href='index.php?add_to_cart=$product_id' class='btn' style='background-color:black; color:white;' >Add to Cart</a>
                             <a href='product_details.php?product_id=$product_id' class='btn' style='background-color:white; color:black; border: 1px solid black;'>View More</a>
                         </div>
                     </div>
@@ -167,7 +167,7 @@ include('./includes/connect.php');
                         <div class='card-body'>
                             <h5 class='card-title'>$product_title</h5>
                             <p class='card-text'>$product_description</p>
-                            <a href='#' class='btn' style='background-color:black; color:white;' >Add to Cart</a>
+                            <a href='index.php?add_to_cart=$product_id' class='btn' style='background-color:black; color:white;' >Add to Cart</a>
                             <a href='product_details.php?product_id=$product_id' class='btn' style='background-color:white; color:black; border: 1px solid black;'>View More</a>
                         </div>
                     </div>
@@ -200,7 +200,7 @@ include('./includes/connect.php');
                             <div class='card-body'>
                                 <h5 class='card-title'>$product_title</h5>
                                 <p class='card-text'>$product_description</p>
-                                <a href='#' class='btn' style='background-color:black; color:white;' >Add to Cart</a>
+                                <a href='index.php?add_to_cart=$product_id' class='btn' style='background-color:black; color:white;' >Add to Cart</a>
                                 <a href='product_details.php?product_id=$product_id' class='btn' style='background-color:white; color:black; border: 1px solid black;'>View More</a>
                             </div>
                         </div>
@@ -239,7 +239,7 @@ include('./includes/connect.php');
                                 <div class='card-body'>
                                     <h5 class='card-title'>$product_title</h5>
                                     <p class='card-text'>$product_description</p>
-                                    <a href='#' class='btn' style='background-color:black; color:white;' >Add to Cart</a>
+                                    <a href='index.php?add_to_cart=$product_id' class='btn' style='background-color:black; color:white;' >Add to Cart</a>
                                 </div>
                             </div>
                         </div>
@@ -322,5 +322,44 @@ include('./includes/connect.php');
     }  
     // $ip = getIPAddress();  
     // echo 'User Real IP Address - '.$ip;  
+
+    // cart function
+    function cart(){
+        if(isset($_GET['add_to_cart'])){
+            global $conn;
+            $get_ip_adds = getIPAddress();
+            $get_product_id = $_GET['add_to_cart'];
+            $select_query = "SELECT * FROM `cart_details` WHERE ip_address = '$get_ip_adds' AND product_id = $get_product_id";
+            $result_query = mysqli_query($conn,$select_query);
+            $num_of_rows = mysqli_num_rows($result_query);
+            if($num_of_rows > 0){
+                echo "
+                    <script>
+                        alert('This Item is Already Present Inside Cart');
+                    </script>
+                ";
+                echo "
+                    <script>
+                        window.open('index.php','_self')
+                    </script>
+                ";
+            }else{
+                $insert_query = "INSERT INTO `cart_details` (product_id, ip_address,quantity,size)
+                VALUES ($get_product_id,'$get_ip_adds',1,35)
+                ";
+                $result_query = mysqli_query($conn,$insert_query);
+                echo "
+                    <script>
+                        alert('Dat Added to Cart');
+                    </script>
+                ";
+                echo "
+                    <script>
+                        window.open('index.php','_self')
+                    </script>
+                ";
+            }
+        }
+    }
 
 ?>

@@ -70,6 +70,10 @@
             </div>
         </div>
     </nav>
+    <!-- calling cart function -->
+    <?php
+        cart();
+    ?>
     <!-- Second Child -->
     <nav class="navbar navbar-expand-lg" style="background-color: #f2f2f3 ;">
         <ul class="navbar-nav me-auto">

@@ -18,9 +18,9 @@
             $result = mysqli_query($conn,$insert_query);
             if($result){
                 echo "
-                <script>
-                    alert('Category Succesfully Added!');
-                </script>
+                    <div class='alert text-white text-center' role='alert' style='background-color: #344055';>
+                        Congrats! You Succesfully Added New Category
+                    </div>
                 ";
             }
         }

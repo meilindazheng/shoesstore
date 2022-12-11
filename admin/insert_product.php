@@ -37,10 +37,10 @@
 
             $result_query = mysqli_query($conn,$insert_products);
             if($result_query){
-                echo"
-                    <script>
-                        alert('Data Succesfully Added');
-                    </script>
+                echo "
+                    <div class='alert text-white text-center' role='alert' style='background-color: #344055';>
+                        Congrats! You Succesfully Added New Product
+                    </div>
                 ";
             }
         }
