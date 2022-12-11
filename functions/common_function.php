@@ -25,6 +25,7 @@ include('./includes/connect.php');
                             <div class='card-body'>
                                 <h5 class='card-title'>$product_title</h5>
                                 <p class='card-text'>$product_description</p>
+                                <p class='card-text'>Price: $product_price/-</p>
                                 <a href='index.php?add_to_cart=$product_id' class='btn' style='background-color:black; color:white;' >Add to Cart</a>
                                 <a href='product_details.php?product_id=$product_id' class='btn' style='background-color:white; color:black; border: 1px solid black;'>View More</a>
                             </div>
@@ -63,6 +64,7 @@ include('./includes/connect.php');
                         <div class='card-body'>
                             <h5 class='card-title'>$product_title</h5>
                             <p class='card-text'>$product_description</p>
+                            <p class='card-text'>Price: $product_price/-</p>
                             <a href='index.php?add_to_cart=$product_id' class='btn' style='background-color:black; color:white;' >Add to Cart</a>
                             <a href='product_details.php?product_id=$product_id' class='btn' style='background-color:white; color:black; border: 1px solid black;'>View More</a>
                         </div>
@@ -115,6 +117,7 @@ include('./includes/connect.php');
                         <div class='card-body'>
                             <h5 class='card-title'>$product_title</h5>
                             <p class='card-text'>$product_description</p>
+                            <p class='card-text'>Price: $product_price/-</p>
                             <a href='index.php?add_to_cart=$product_id' class='btn' style='background-color:black; color:white;' >Add to Cart</a>
                             <a href='product_details.php?product_id=$product_id' class='btn' style='background-color:white; color:black; border: 1px solid black;'>View More</a>
                         </div>
@@ -167,6 +170,7 @@ include('./includes/connect.php');
                         <div class='card-body'>
                             <h5 class='card-title'>$product_title</h5>
                             <p class='card-text'>$product_description</p>
+                            <p class='card-text'>Price: $product_price/-</p>
                             <a href='index.php?add_to_cart=$product_id' class='btn' style='background-color:black; color:white;' >Add to Cart</a>
                             <a href='product_details.php?product_id=$product_id' class='btn' style='background-color:white; color:black; border: 1px solid black;'>View More</a>
                         </div>
@@ -200,6 +204,7 @@ include('./includes/connect.php');
                             <div class='card-body'>
                                 <h5 class='card-title'>$product_title</h5>
                                 <p class='card-text'>$product_description</p>
+                                <p class='card-text'>Price: $product_price/-</p>
                                 <a href='index.php?add_to_cart=$product_id' class='btn' style='background-color:black; color:white;' >Add to Cart</a>
                                 <a href='product_details.php?product_id=$product_id' class='btn' style='background-color:white; color:black; border: 1px solid black;'>View More</a>
                             </div>
@@ -239,6 +244,7 @@ include('./includes/connect.php');
                                 <div class='card-body'>
                                     <h5 class='card-title'>$product_title</h5>
                                     <p class='card-text'>$product_description</p>
+                                    <p class='card-text'>Price: $product_price/-</p>
                                     <a href='index.php?add_to_cart=$product_id' class='btn' style='background-color:black; color:white;' >Add to Cart</a>
                                 </div>
                             </div>
