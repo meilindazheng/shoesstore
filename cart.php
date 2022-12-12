@@ -59,14 +59,7 @@
                     <li class="nav-item">
                         <a class="nav-link text-white" href="cart.php"><i class="fa-solid fa-cart-shopping"></i><sup><?php cart_item(); ?></sup></a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="#">Total Price : $ <?php total_cart_price(); ?></a>
-                    </li>
                 </ul>
-                <form class="d-flex" role="search" action="search_product.php" method="get">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search_data">
-                <input type="submit" value = "Search" class="btn btn-outline-light" name="search_data_product">
-                </form>
             </div>
         </div>
     </nav>
@@ -90,41 +83,42 @@
         <h4 class="text-center">MK Shoes Store</h4>
         <p class="text-center">One Stop Shoes Center</p>
     </div>
-    <!-- Fourth Child -->
-    <div class="row">
-        <div class="col-md-10">
-            <!-- display products -->
-            <div class="row px-3">
-                <!-- fetching products from database -->
-                <?php
-                    getproducts();
-                    get_unique_categories();
-                    get_unique_brands();
-                    // $ip = getIPAddress();  
-                    // echo 'User Real IP Address - '.$ip;  
-                ?>
+    <!-- Fourth Child - Table Cart -->
+    <div class="container">
+        <div class="row">
+            <table class="text-center" style="border: 1px solid black;">
+                <thead class="table table-bordered" style="background-color: #344055;">
+                    <tr class="text-center text-white">
+                        <th>Product Title</th>
+                        <th>Product Image</th>
+                        <th>Quantity</th>
+                        <th>Total Price</th>
+                        <th>Remove</th>
+                        <th>Operations</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Apple</td>
+                        <td><img src="./images/adidas_1.jpg" alt="" style="width:75px; height =75px;"></td>
+                        <td><input type="text" name="" id=""></td>
+                        <td>9000</td>
+                        <td><input type="checkbox" name="" id=""></td>
+                        <td>
+                            <p>Update</p>
+                            <p>Remove</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- Subtotal -->
+            <div class="d-flex">
+                <h4 class="p-2" style="color: #344055;">
+                    Subtotal: <strong>5000</strong>
+                </h4>
+                <a href="index.php"><button  class="text-white border-0 p-2 my-2 rounded px-3 py-2 mx-3"  style="background-color: #344055;">Continue Shopping</button></a>
+                <a href="index.php"><button  class="text-white border-0 p-2 my-2 rounded  px-3 py-2""  style="background-color: #344055;">Checkout</button></a>
             </div>
-        </div>
-        <!-- row ends -->
-        <div class="col-md-2 p-0" style="background-color: #344055;">
-            <!-- display sidenav [brand] -->
-            <ul class="navbar-nav me-auto text-center">
-                <li class="nav-item" style="background-color: #f2f2f3;">
-                    <a href="#" class="nav-link"><h6>Brand</h6></a>
-                </li>
-                <?php
-                    getbrands();
-                ?>
-            </ul>
-            <!-- display sidenav [category] -->
-            <ul class="navbar-nav me-auto text-center">
-                <li class="nav-item" style="background-color: #f2f2f3;">
-                    <a href="#" class="nav-link"><h6>Category</h6></a>
-                </li>
-                <?php
-                    getcategories();
-                ?>
-            </ul>
         </div>
     </div>
     <!-- Last Child -->
