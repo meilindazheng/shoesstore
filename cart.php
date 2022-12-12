@@ -86,35 +86,58 @@
     <!-- Fourth Child - Table Cart -->
     <div class="container">
         <div class="row">
-            <table class="text-center" style="border: 1px solid black;">
-                <thead class="table table-bordered" style="background-color: #344055;">
+            <table class="text-center table-bordered" style="border: 1px solid black;">
+                <thead style="background-color: #344055;">
                     <tr class="text-center text-white">
                         <th>Product Title</th>
                         <th>Product Image</th>
                         <th>Quantity</th>
                         <th>Total Price</th>
                         <th>Remove</th>
-                        <th>Operations</th>
+                        <th colspan="2">Operations</th>
                     </tr>
                 </thead>
                 <tbody>
+                    <!-- PHP Dynamic Data -->
+                    <?php
+                        global $conn;
+                        $get_ip_adds = getIPAddress();
+                        $total = 0;
+                        $cart_query = "SELECT * FROM `cart_details` WHERE ip_address = '$get_ip_adds'";
+                        $result = mysqli_query($conn,$cart_query);
+                        while($row = mysqli_fetch_array($result)){
+                            $product_id = $row['product_id'];
+                            $select_products = "SELECT * FROM `products` WHERE product_id = '$product_id'";
+                            $result_products = mysqli_query($conn,$select_products);
+                            while($row_product_price = mysqli_fetch_array($result_products)){
+                                $product_price = array($row_product_price['product_price']);
+                                $price_table = $row_product_price['product_price'];
+                                $product_title = $row_product_price['product_title'];
+                                $product_image1 = $row_product_price['product_image1'];
+                                $product_values = array_sum($product_price);
+                                $total+= $product_values;
+                    ?>
                     <tr>
-                        <td>Apple</td>
-                        <td><img src="./images/adidas_1.jpg" alt="" style="width:75px; height =75px;"></td>
-                        <td><input type="text" name="" id=""></td>
-                        <td>9000</td>
+                        <td><?php echo$product_title ?></td>
+                        <td><img src="./images/<?php echo$product_image1 ?>" alt="" style="width:75px; height =75px; object-fit:contain;"></td>
+                        <td><input type="text" name="" id="" class="form-input w-50"></td>
+                        <td><?php echo $price_table ?></td>
                         <td><input type="checkbox" name="" id=""></td>
                         <td>
-                            <p>Update</p>
-                            <p>Remove</p>
+                            <button  class="text-white border-0 p-2 my-2 rounded  mx-3"  style="background-color: #344055;">Update</button>
+                            <button  class="text-white border-0 p-2 my-2 rounded  mx-3"  style="background-color: #344055;">Remove</button>
                         </td>
                     </tr>
+                    <?php
+                                                }
+                                            }
+                    ?>
                 </tbody>
             </table>
             <!-- Subtotal -->
             <div class="d-flex">
                 <h4 class="p-2" style="color: #344055;">
-                    Subtotal: <strong>5000</strong>
+                    Subtotal: <strong><?php echo $total ?></strong>
                 </h4>
                 <a href="index.php"><button  class="text-white border-0 p-2 my-2 rounded px-3 py-2 mx-3"  style="background-color: #344055;">Continue Shopping</button></a>
                 <a href="index.php"><button  class="text-white border-0 p-2 my-2 rounded  px-3 py-2""  style="background-color: #344055;">Checkout</button></a>
