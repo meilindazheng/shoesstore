@@ -131,14 +131,13 @@
                             <td><img src="./images/<?php echo$product_image1 ?>" alt="" style="width:75px; height =75px; object-fit:contain;"></td>
                             <td><input type="text" name="quantity" id="" class="form-input w-50"></td>
                             <td class = "d-flex">
-                                    <input type="radio" id="37" name="size" value="37">
-                                    <label for="37">37 &nbsp; </label><br>
-                                    <input type="radio" id="38" name="size" value="38 ">
-                                    <label for="38">&nbsp;38&nbsp; </label><br>
-                                    <input type="radio" id="39" name="size" value="39 ">
-                                    <label for="39">&nbsp;39&nbsp; </label>
-                                    <input type="radio" id="40" name="size" value="40 ">
-                                    <label for="40">&nbsp;40&nbsp;</label>
+                                    <label for="size">Choose size: </label>
+                                    <select name="size" id="size">
+                                        <option value="37">37</option>
+                                        <option value="38">38</option>
+                                        <option value="39">39</option>
+                                        <option value="40">40</option>
+                                    </select>
                             </td>
                             <?php
                                 $get_ip_adds = getIPAddress();
@@ -153,10 +152,15 @@
                                 }
                             ?>
                             <td><?php echo $price_table ?></td>
-                            <td><input type="checkbox" name="" id=""></td>
+                            <td><input type="checkbox" name="removeitem[]" id="" 
+                                value="
+                                    <?php
+                                        echo $product_id;
+                                    ?>">
+                            </td>
                             <td>
                                 <input type="submit" value="Update Cart" class="text-white border-0 p-2 my-2 rounded  mx-3"  style="background-color: #344055;" name = "update_cart">
-                                <button  class="text-white border-0 p-2 my-2 rounded  mx-3"  style="background-color: #344055;">Remove</button>
+                                <input type="submit" value="Remove Cart" class="text-white border-0 p-2 my-2 rounded  mx-3"  style="background-color: #344055;" name = "remove_cart">
                             </td>
                         </tr>
                         <?php
@@ -176,6 +180,24 @@
             </div>
         </div>
     </form>
+    <!-- function to remove items -->
+    <?php
+        function remove_cart_item(){
+            global $conn;
+            if(isset($_POST['remove_cart'])){
+                foreach($_POST['removeitem'] as $remove_id){
+                    echo $remove_id;
+                    $delete_query = "DELETE FROM `cart_details` WHERE product_id = $remove_id";
+                    $run_delete = mysqli_query($conn,$delete_query);
+                    if($run_delete){
+                        echo "<script>window.open('cart.php','_self');</script>";
+                    }
+                }
+            }
+        }
+        echo $remove_item =  remove_cart_item();
+    ?>
+
     <!-- Last Child -->
     <?php
         include('./includes/footer.php');
