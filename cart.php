@@ -188,7 +188,7 @@
                                     Subtotal: <strong>  $total </strong>
                                     </h4>
                                     <input type='submit' value='Continue Shopping' class='text-white border-0 p-2 my-2 rounded  mx-3'  style='background-color: #344055;' name = 'continue_shopping'>
-                                    <input type='submit' value='Checkout' class='text-white border-0 p-2 my-2 rounded  mx-3'  style='background-color: #344055;' name = 'checkout'>";
+                                    <button class ='text-white border-0 p-2 my-2 rounded  mx-3'  style='background-color: #344055;'><a href='checkout.php' class = 'text-light' style='text-decoration:none;'>Checkout</a></button>";
                         }else{
                             echo"<input type='submit' value='Continue Shopping' class='text-white border-0 p-2 my-2 rounded  mx-3'  style='background-color: #344055;' name = 'continue_shopping'>";
                         }
