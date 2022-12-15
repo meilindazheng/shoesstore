@@ -81,7 +81,7 @@
                 <a href="#" class="nav-link">Welcome</a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link">Welcome</a>
+                <a href="./users_area/user_login.php" class="nav-link">Login</a>
             </li>
         </ul>
     </nav>
@@ -188,7 +188,7 @@
                                     Subtotal: <strong>  $total </strong>
                                     </h4>
                                     <input type='submit' value='Continue Shopping' class='text-white border-0 p-2 my-2 rounded  mx-3'  style='background-color: #344055;' name = 'continue_shopping'>
-                                    <button class ='text-white border-0 p-2 my-2 rounded  mx-3'  style='background-color: #344055;'><a href='checkout.php' class = 'text-light' style='text-decoration:none;'>Checkout</a></button>";
+                                    <button class ='text-white border-0 p-2 my-2 rounded  mx-3'  style='background-color: #344055;'><a href='./users_area/checkout.php' class = 'text-light' style='text-decoration:none;'>Checkout</a></button>";
                         }else{
                             echo"<input type='submit' value='Continue Shopping' class='text-white border-0 p-2 my-2 rounded  mx-3'  style='background-color: #344055;' name = 'continue_shopping'>";
                         }
