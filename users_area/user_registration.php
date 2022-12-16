@@ -80,15 +80,27 @@
         $result = mysqli_query($conn,$select_query);
         $num_of_rows = mysqli_num_rows($result);
         if($num_of_rows>0){
-            echo "<script>alert('Username already exist!')</script>";
+            echo "<script>alert('Username or email already exist!')</script>";
         }else if($user_password != $conf_user_password){
             echo "<script>alert('Password doesn't match!')</script>";
         }
         else{
             $insert_query = "INSERT INTO `user_table` 
-            VALUES('','$user_username', '$user_email','$hash_password ','$user_ip','$user_address','$user_contact')";
+            VALUES('','$user_username', '$user_email','$user_password ','$user_ip','$user_address','$user_contact')";
             $sql_execute = mysqli_query($conn,$insert_query);
         }
+        //selecting cart items
+        $select_cart_items = "SELECT * FROM `cart_details` WHERE ip_address = '$user_ip'";
+        $result_cart = mysqli_query($conn,$select_cart_items);
+        $num_of_rows = mysqli_num_rows($result_cart);
+        if($num_of_rows>0){
+            $_SESSION['username'] = $user_username;
+            echo "<script>alert('You have items in your cart!')</script>";
+            echo "<script>window.open('checkout.php','_self')</script>";
+        }
+        else{
+            echo "<script>window.open('../index.php','_self')</script>";
+        }
     }
-
+    
 ?>

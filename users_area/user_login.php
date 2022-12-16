@@ -1,3 +1,7 @@
+<?php
+    include('../includes/connect.php');
+    include('../functions/common_function.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,3 +40,25 @@
     </div>
 </body>
 </html>
+
+<!-- logic php -->
+<?php
+    if(isset($_POST['user_login'])){
+        $user_email = $_POST['user_email'];
+        $user_password = $_POST['user_password'];
+        $select_query = "SELECT * FROM `user_table` WHERE user_email = '$user_email'";
+        $result = mysqli_query($conn,$select_query);
+        $row_count = mysqli_num_rows($result);
+        $row_data = mysqli_fetch_assoc($result);
+        // echo $row_data['user_password'];
+        if($row_count>0){
+            if($user_password = $row_data['user_password']){
+                echo "<script>alert('Login succesful')</script>";
+            }else{
+                echo "<script>alert('xx')</script>";
+            }
+        }else{
+            echo "<script>alert('Invalid Credentials')</script>";
+        }
+    }
+?>
