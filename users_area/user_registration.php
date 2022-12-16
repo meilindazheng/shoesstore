@@ -67,6 +67,8 @@
         $user_username = $_POST['user_username'];
         $user_email = $_POST['user_email'];
         $user_password = $_POST['user_password'];
+        // hashing password
+        $hash_password = password_hash($user_password,PASSWORD_DEFAULT);
         $conf_user_password = $_POST['conf_user_password'];
         $user_address = $_POST['user_address'];
         $user_contact = $_POST['user_contact'];
@@ -84,7 +86,7 @@
         }
         else{
             $insert_query = "INSERT INTO `user_table` 
-            VALUES('','$user_username', '$user_email','$user_password','$user_ip','$user_address','$user_contact')";
+            VALUES('','$user_username', '$user_email','$hash_password ','$user_ip','$user_address','$user_contact')";
             $sql_execute = mysqli_query($conn,$insert_query);
         }
     }
