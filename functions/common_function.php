@@ -338,33 +338,21 @@
             $select_query = "SELECT * FROM `cart_details` WHERE ip_address = '$get_ip_adds' AND product_id = $get_product_id";
             $result_query = mysqli_query($conn,$select_query);
             $num_of_rows = mysqli_num_rows($result_query);
-            if($num_of_rows > 0){
-                echo "
-                    <script>
-                        alert('This Item is Already Present Inside Cart');
-                    </script>
-                ";
-                echo "
-                    <script>
-                        window.open('index.php','_self')
-                    </script>
-                ";
-            }else{
-                $insert_query = "INSERT INTO `cart_details` (product_id, ip_address,quantity,size)
-                VALUES ($get_product_id,'$get_ip_adds',1,35)
-                ";
-                $result_query = mysqli_query($conn,$insert_query);
-                echo "
-                    <script>
-                        alert('Dat Added to Cart');
-                    </script>
-                ";
-                echo "
-                    <script>
-                        window.open('index.php','_self')
-                    </script>
-                ";
-            }
+            $insert_query = "INSERT INTO `cart_details` (product_id, ip_address,quantity,size)
+            VALUES ($get_product_id,'$get_ip_adds',1,35)
+            ";
+            $result_query = mysqli_query($conn,$insert_query);
+            echo "
+                <script>
+                    alert('Dat Added to Cart');
+                </script>
+            ";
+            echo "
+                <script>
+                    window.open('index.php','_self')
+                </script>
+            ";
+            
         }
     }
 
@@ -389,18 +377,24 @@
     // total price function
     function total_cart_price(){
         global $conn;
-        $get_ip_adds = getIPAddress();
         $total = 0;
+        $get_ip_adds = getIPAddress();
         $cart_query = "SELECT * FROM `cart_details` WHERE ip_address = '$get_ip_adds'";
         $result = mysqli_query($conn,$cart_query);
+        $result_count = mysqli_num_rows($result);
         while($row = mysqli_fetch_array($result)){
             $product_id = $row['product_id'];
+            $product_quantity = $row['quantity'];
             $select_products = "SELECT * FROM `products` WHERE product_id = '$product_id'";
             $result_products = mysqli_query($conn,$select_products);
             while($row_product_price = mysqli_fetch_array($result_products)){
                 $product_price = array($row_product_price['product_price']);
+                $price_table = $row_product_price['product_price'];
+                $product_title = $row_product_price['product_title'];
+                $product_image1 = $row_product_price['product_image1'];
                 $product_values = array_sum($product_price);
-                $total+= $product_values;
+                $sub_total = $price_table * $product_quantity;
+                $total+= $sub_total;
             }
         }
         echo $total;

@@ -71,13 +71,13 @@
         </div>
     </nav>
     <?php
-        if(isset($_GET['edit_cart'])){
-            $edit_cart_id = $_GET['edit_cart'];
-            $get_data = "SELECT * FROM `cart_details` WHERE product_id = $edit_cart_id";
-            $result = mysqli_query($conn,$get_data);
-            $row = mysqli_fetch_assoc($result);
+        // if(isset($_GET['edit_cart'])){
+        //     $edit_cart_id = $_GET['edit_cart'];
+        //     $get_data = "SELECT * FROM `cart_details` WHERE product_id = $edit_cart_id";
+        //     $result = mysqli_query($conn,$get_data);
+        //     $row = mysqli_fetch_assoc($result);
 
-        }
+        // }
     ?>
     <div class="container mt-5">
         <h1 class="text-center">Edit Product</h1>
@@ -85,6 +85,15 @@
             <div class="form-outline w-50 m-auto">
                 <label for="quantity">Quantity</label>
                 <input type="text" id="quantity" class="form-control" name="quantity">
+            </div>
+            <div class="form-group w-50 m-auto">
+                <label for="size">Size in EU</label>
+                <select class="form-control" id="size" name="size">
+                <option>37</option>
+                <option>38</option>
+                <option>39</option>
+                <option>40</option>
+                </select>
                 <input type="submit" value="Update Cart" class="text-white border-0 p-2 my-2 rounded mt-3"  style="background-color: #344055;" name = "update_cart">
             </div>
         </form>
@@ -103,8 +112,10 @@
     if(isset($_POST['update_cart'])){
         $edit_cart_id = $_GET['edit_cart'];
         $quantity = $_POST['quantity'];
+        $size = $_POST['size'];
+        echo "<script>alert($size)</script>";
         // query to update carts
-        $update_cart = "UPDATE `cart_details` SET quantity = $quantity WHERE product_id = $edit_cart_id";
+        $update_cart = "UPDATE `cart_details` SET quantity = $quantity, size = $size WHERE cart_id = $edit_cart_id";
         $result_update_cart = mysqli_query($conn,$update_cart);
         if($result_update_cart){
             echo"<script>window.open('cart.php','_self')</script>";

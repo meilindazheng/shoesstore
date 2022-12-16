@@ -109,6 +109,7 @@
                                 <tr class='text-center text-white'>
                                     <th>Product Title</th>
                                     <th>Product Image</th>
+                                    <th>Size</th>
                                     <th>Price per Unit</th>
                                     <th>Quantity</th>
                                     <th>Total Price per Item</th>
@@ -119,8 +120,10 @@
                                 <tbody>
                                 ";
                                 while($row = mysqli_fetch_array($result)){
+                                    $cart_id = $row['cart_id'];
                                     $product_id = $row['product_id'];
                                     $product_quantity = $row['quantity'];
+                                    $product_size = $row['size'];
                                     $select_products = "SELECT * FROM `products` WHERE product_id = '$product_id'";
                                     $result_products = mysqli_query($conn,$select_products);
                                     while($row_product_price = mysqli_fetch_array($result_products)){
@@ -135,6 +138,7 @@
                             <tr>
                                 <td><?php echo$product_title ?></td>
                                 <td><img src="./images/<?php echo$product_image1 ?>" alt="" style="width:75px; height =75px; object-fit:contain;"></td>
+                                <td><?php echo $product_size?></td>
                                 <td><?php echo $price_table ?></td>
                                 <td><?php echo $product_quantity?></td>
                                 <td><?php echo $price_table * $product_quantity?></td>
@@ -148,7 +152,7 @@
                                     
                                     <input type="submit" value="Remove Cart" class="text-white border-0 p-2 my-2 rounded  mx-3"  style="background-color: #344055;" name = "remove_cart">
                                     <!-- <a href="cart.php?update_cart = <?php echo $product_id ?>"><input type="submit" value="Update Cart" class="text-white border-0 p-2 my-2 rounded  mx-3"  style="background-color: #344055;" name = "update_cart"></a> -->
-                                    <a href="edit_carts.php?edit_cart=<?php echo $product_id ?>"><i class="fa-solid fa-pen-to-square"></i></a>
+                                    <a href="edit_carts.php?edit_cart=<?php echo $cart_id ?>"><i class="fa-solid fa-pen-to-square"></i></a>
                                 </td>
                             </tr>
                             <?php
