@@ -50,7 +50,7 @@
                         <a class="nav-link text-white" href="display_all.php">Products</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="#">Register</a>
+                        <a class="nav-link text-white" href="users_area/user_registration.php">Register</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white" href="#">Contact</a>

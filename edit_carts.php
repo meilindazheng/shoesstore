@@ -51,7 +51,7 @@
                         <a class="nav-link text-white" href="display_all.php">Products</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="#">Register</a>
+                        <a class="nav-link text-white" href="users_area/user_registration.php">Register</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white" href="#">Contact</a>
@@ -113,7 +113,7 @@
         $edit_cart_id = $_GET['edit_cart'];
         $quantity = $_POST['quantity'];
         $size = $_POST['size'];
-        echo "<script>alert($size)</script>";
+        // echo "<script>alert($size)</script>";
         // query to update carts
         $update_cart = "UPDATE `cart_details` SET quantity = $quantity, size = $size WHERE cart_id = $edit_cart_id";
         $result_update_cart = mysqli_query($conn,$update_cart);

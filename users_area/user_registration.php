@@ -72,13 +72,20 @@
         $user_contact = $_POST['user_contact'];
         $user_ip = getIPAddress();
 
-        $insert_query = "INSERT INTO `user_table` 
-        VALUES('','$user_username', '$user_email','$user_password','$user_ip','$user_address','$user_contact')";
-        $sql_execute = mysqli_query($conn,$insert_query);
-        if($sql_execute){
-            echo "<script>alert('User Inserted')</script>";
-        }else{
-            die(mysqli_error($conn));
+
+        // select query
+        $select_query = "SELECT * FROM `user_table` WHERE user_name = '$user_username' OR user_email = '$user_email'";
+        $result = mysqli_query($conn,$select_query);
+        $num_of_rows = mysqli_num_rows($result);
+        if($num_of_rows>0){
+            echo "<script>alert('Username already exist!')</script>";
+        }else if($user_password != $conf_user_password){
+            echo "<script>alert('Password doesn't match!')</script>";
+        }
+        else{
+            $insert_query = "INSERT INTO `user_table` 
+            VALUES('','$user_username', '$user_email','$user_password','$user_ip','$user_address','$user_contact')";
+            $sql_execute = mysqli_query($conn,$insert_query);
         }
     }
 
