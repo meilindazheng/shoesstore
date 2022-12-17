@@ -94,7 +94,7 @@
         $result_cart = mysqli_query($conn,$select_cart_items);
         $num_of_rows = mysqli_num_rows($result_cart);
         if($num_of_rows>0){
-            $_SESSION['username'] = $user_username;
+            $_SESSION['email'] = $user_email;
             echo "<script>alert('You have items in your cart!')</script>";
             echo "<script>window.open('checkout.php','_self')</script>";
         }

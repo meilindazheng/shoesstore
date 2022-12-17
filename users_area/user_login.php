@@ -51,15 +51,16 @@
         $result = mysqli_query($conn,$select_query);
         $row_count = mysqli_num_rows($result);
         $row_data = mysqli_fetch_assoc($result);
-        $get_ip_adds = getIPAddress();
 
+        $get_ip_adds = getIPAddress();
+        
+        
         $select_query_cart = "SELECT * FROM `cart_details` WHERE ip_address = '$get_ip_adds'";
         $select_cart = mysqli_query($conn,$select_query_cart);
         $row_count_cart = mysqli_num_rows($select_cart);
         if($row_count>0){
             $_SESSION['email'] = $user_email;
             if($user_password = $row_data['user_password']){
-                echo "<script>alert($row_count_cart)</script>";
                 if($row_count==1 and $row_count_cart==0){
                     $_SESSION['email'] = $user_email;
                     echo "<script>window.open('profile.php','_self')</script>";

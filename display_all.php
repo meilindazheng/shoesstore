@@ -77,10 +77,27 @@
     <!-- Second Child -->
     <nav class="navbar navbar-expand-lg" style="background-color: #f2f2f3 ;">
         <ul class="navbar-nav me-auto">
-            <li class="nav-item">
-                <a href="#" class="nav-link">Welcome</a>
-            </li>
             <?php
+
+                if(!isset($_SESSION['email'])){
+                    echo"
+                    <li class='nav-item'>
+                        <a href='#' class='nav-link'>Welcome</a>
+                    </li>
+                    ";
+                }else{
+                    $email = $_SESSION['email'];
+                    $select_query = "SELECT * FROM `user_table` WHERE user_email = '$email'";
+                    $result = mysqli_query($conn,$select_query);
+                    $row_data = mysqli_fetch_assoc($result);
+                    $name = $row_data['user_name'];
+                    $_SESSION['name'] = $name;
+                    echo"
+                    <li class='nav-item'>
+                        <a href='#' class='nav-link'>Welcome ".$_SESSION['name']."</a>
+                    </li>
+                    ";
+                }
                 if(!isset($_SESSION['email'])){
                     echo"
                     <li class='nav-item'>
