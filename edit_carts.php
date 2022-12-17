@@ -70,7 +70,7 @@
             </div>
         </div>
     </nav>
-    <?php
+    <!-- <?php
         // if(isset($_GET['edit_cart'])){
         //     $edit_cart_id = $_GET['edit_cart'];
         //     $get_data = "SELECT * FROM `cart_details` WHERE product_id = $edit_cart_id";
@@ -78,7 +78,7 @@
         //     $row = mysqli_fetch_assoc($result);
 
         // }
-    ?>
+    ?> -->
     <div class="container mt-5">
         <h1 class="text-center">Edit Product</h1>
         <form action="" method="post">

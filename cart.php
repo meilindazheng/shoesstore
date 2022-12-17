@@ -128,9 +128,16 @@
                         <!-- PHP Dynamic Data -->
                         <?php
                             global $conn;
-                            $get_ip_adds = getIPAddress();
+
+                            $email = $_SESSION['email'];
+                            $select_query_session = "SELECT * FROM `user_table` WHERE user_email = '$email'";
+                            $result = mysqli_query($conn,$select_query_session);
+                            $row_data = mysqli_fetch_assoc($result);
+                            $user_id = $row_data['user_id'];
+                            $_SESSION['user_id'] = $user_id;
+
                             $total = 0;
-                            $cart_query = "SELECT * FROM `cart_details` WHERE ip_address = '$get_ip_adds'";
+                            $cart_query = "SELECT * FROM `cart_details` WHERE user_id = $user_id";
                             $result = mysqli_query($conn,$cart_query);
                             $result_count = mysqli_num_rows($result);
                             if($result_count>0){
@@ -197,19 +204,29 @@
                 <!-- Subtotal -->
                 <div class="d-flex">
                     <?php
-                        $get_ip_adds = getIPAddress();
-                        $cart_query = "SELECT * FROM `cart_details` WHERE ip_address = '$get_ip_adds'";
-                        $result = mysqli_query($conn,$cart_query);
-                        $result_count = mysqli_num_rows($result);
-                        if($result_count>0){
-                            echo "<h4 class='p-2' style='color: #344055;'>
-                                    Subtotal: <strong>  $total </strong>
-                                    </h4>
-                                    <input type='submit' value='Continue Shopping' class='text-white border-0 p-2 my-2 rounded  mx-3'  style='background-color: #344055;' name = 'continue_shopping'>
-                                    <button class ='text-white border-0 p-2 my-2 rounded  mx-3'  style='background-color: #344055;'><a href='./users_area/checkout.php' class = 'text-light' style='text-decoration:none;'>Checkout</a></button>";
-                                }
-                        if(isset($_POST['continue_shopping'])){
-                            echo"<script>window.open('index.php','_self')</script>";
+                        if(isset($_SESSION['email'])){
+                            $email = $_SESSION['email'];
+                            $select_query_session = "SELECT * FROM `user_table` WHERE user_email = '$email'";
+                            $result = mysqli_query($conn,$select_query_session);
+                            $row_data = mysqli_fetch_assoc($result);
+                            $user_id = $row_data['user_id'];
+                            $_SESSION['user_id'] = $user_id;
+
+                            $cart_query = "SELECT * FROM `cart_details` WHERE user_id = $user_id";
+                            $result = mysqli_query($conn,$cart_query);
+                            $result_count = mysqli_num_rows($result);
+                            if($result_count>0){
+                                echo "<h4 class='p-2' style='color: #344055;'>
+                                        Subtotal: <strong>  $total </strong>
+                                        </h4>
+                                        <input type='submit' value='Continue Shopping' class='text-white border-0 p-2 my-2 rounded  mx-3'  style='background-color: #344055;' name = 'continue_shopping'>
+                                        <button class ='text-white border-0 p-2 my-2 rounded  mx-3'  style='background-color: #344055;'><a href='./users_area/checkout.php' class = 'text-light' style='text-decoration:none;'>Checkout</a></button>";
+                                    }
+                            if(isset($_POST['continue_shopping'])){
+                                echo"<script>window.open('index.php','_self')</script>";
+                            }
+                        }else{
+                            echo "<script>window.open('./users_area/user_login.php','_self')</script>";
                         }
                     ?>
                 </div>

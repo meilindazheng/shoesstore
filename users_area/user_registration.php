@@ -72,7 +72,6 @@
         $conf_user_password = $_POST['conf_user_password'];
         $user_address = $_POST['user_address'];
         $user_contact = $_POST['user_contact'];
-        $user_ip = getIPAddress();
 
 
         // select query
@@ -85,20 +84,9 @@
             echo "<script>alert('Password doesn't match!')</script>";
         }
         else{
-            $insert_query = "INSERT INTO `user_table` 
-            VALUES('','$user_username', '$user_email','$user_password ','$user_ip','$user_address','$user_contact')";
+            $insert_query = "INSERT INTO `user_table` (user_id, user_name,user_email,user_password, user_address,user_mobile)
+            VALUES('','$user_username', '$user_email','$user_password ','$user_address','$user_contact')";
             $sql_execute = mysqli_query($conn,$insert_query);
-        }
-        //selecting cart items
-        $select_cart_items = "SELECT * FROM `cart_details` WHERE ip_address = '$user_ip'";
-        $result_cart = mysqli_query($conn,$select_cart_items);
-        $num_of_rows = mysqli_num_rows($result_cart);
-        if($num_of_rows>0){
-            $_SESSION['email'] = $user_email;
-            echo "<script>alert('You have items in your cart!')</script>";
-            echo "<script>window.open('checkout.php','_self')</script>";
-        }
-        else{
             echo "<script>window.open('../index.php','_self')</script>";
         }
     }
