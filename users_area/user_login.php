@@ -1,6 +1,7 @@
 <?php
     include('../includes/connect.php');
     include('../functions/common_function.php');
+    @session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -50,10 +51,22 @@
         $result = mysqli_query($conn,$select_query);
         $row_count = mysqli_num_rows($result);
         $row_data = mysqli_fetch_assoc($result);
-        // echo $row_data['user_password'];
+        $get_ip_adds = getIPAddress();
+
+        $select_query_cart = "SELECT * FROM `cart_details` WHERE ip_address = '$get_ip_adds'";
+        $select_cart = mysqli_query($conn,$select_query_cart);
+        $row_count_cart = mysqli_num_rows($select_cart);
         if($row_count>0){
+            $_SESSION['email'] = $user_email;
             if($user_password = $row_data['user_password']){
-                echo "<script>alert('Login succesful')</script>";
+                echo "<script>alert($row_count_cart)</script>";
+                if($row_count==1 and $row_count_cart==0){
+                    $_SESSION['email'] = $user_email;
+                    echo "<script>window.open('profile.php','_self')</script>";
+                }else{
+                    $_SESSION['email'] = $user_email;
+                    echo "<script>window.open('payment.php','_self')</script>";
+                }
             }else{
                 echo "<script>alert('xx')</script>";
             }

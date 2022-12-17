@@ -1,6 +1,7 @@
 <?php
     include('includes/connect.php');
     include('functions/common_function.php');
+    session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -80,9 +81,21 @@
             <li class="nav-item">
                 <a href="#" class="nav-link">Welcome</a>
             </li>
-            <li class="nav-item">
-                <a href="./users_area/user_login.php" class="nav-link">Login</a>
-            </li>
+            <?php
+                if(!isset($_SESSION['email'])){
+                    echo"
+                    <li class='nav-item'>
+                        <a href='./users_area/user_login.php' class='nav-link'>Login</a>
+                    </li>
+                    ";
+                }else{
+                    echo "
+                    <li class='nav-item'>
+                        <a href='./users_area/user_logout.php' class='nav-link'>Logout</a>
+                    </li>
+                    ";
+                }
+            ?>
         </ul>
     </nav>
     <!-- Third Child -->

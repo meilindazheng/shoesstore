@@ -1,6 +1,7 @@
 <?php
     include('includes/connect.php');
     include('functions/common_function.php');
+    session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,6 +31,9 @@
             box-shadow:  0 8px 8px -6px black;
             transform:scale(1.01);
             transition: all ease 0.3s;
+        }
+        body{
+            overflow-x:hidden;
         }
     </style>
 </head>
@@ -80,9 +84,21 @@
             <li class="nav-item">
                 <a href="#" class="nav-link">Welcome</a>
             </li>
-            <li class="nav-item">
-                <a href="./users_area/user_login.php" class="nav-link">Login</a>
-            </li>
+            <?php
+                if(!isset($_SESSION['email'])){
+                    echo"
+                    <li class='nav-item'>
+                        <a href='./users_area/user_login.php' class='nav-link'>Login</a>
+                    </li>
+                    ";
+                }else{
+                    echo "
+                    <li class='nav-item'>
+                        <a href='./users_area/user_logout.php' class='nav-link'>Logout</a>
+                    </li>
+                    ";
+                }
+            ?>
         </ul>
     </nav>
     <!-- Third Child -->

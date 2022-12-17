@@ -1,5 +1,6 @@
 <?php
     include('../includes/connect.php');
+    session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -44,13 +45,13 @@
             <div class="collapse navbar-collapse" style="background-color: #344055;" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active text-white" aria-current="page" href="index.php">Home</a>
+                        <a class="nav-link active text-white" aria-current="page" href="../index.php">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="display_all.php">Products</a>
+                        <a class="nav-link text-white" href="../display_all.php">Products</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="users_area/user_registration.php">Register</a>
+                        <a class="nav-link text-white" href="user_registration.php">Register</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white" href="#">Contact</a>
@@ -70,9 +71,21 @@
             <li class="nav-item">
                 <a href="#" class="nav-link">Welcome</a>
             </li>
-            <li class="nav-item">
-                <a href="./users_area/user_login.php" class="nav-link">Login</a>
-            </li>
+            <?php
+                if(!isset($_SESSION['email'])){
+                    echo"
+                    <li class='nav-item'>
+                        <a href='user_login.php' class='nav-link'>Login</a>
+                    </li>
+                    ";
+                }else{
+                    echo "
+                    <li class='nav-item'>
+                        <a href='logout.php' class='nav-link'>Logout</a>
+                    </li>
+                    ";
+                }
+            ?>
         </ul>
     </nav>
     <!-- Third Child -->
@@ -86,10 +99,10 @@
             <!-- display products -->
             <div class="row px-3">
                 <?php
-                if(!isset($_SESSION['username'])){
+                if(!isset($_SESSION['email'])){
                     include('user_login.php');
                 }else{
-                    include('../payment.php');
+                    include('payment.php');
                 }
                 ?>
             </div>
