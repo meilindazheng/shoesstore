@@ -336,7 +336,6 @@
             if(!isset($_SESSION['email'])){
                 echo"<script>window.open('./users_area/user_login.php','_self')</script>";
             }else{
-                echo"<script>alert('already set')</script>";
                 global $conn;
                 $email = $_SESSION['email'];
                 $select_query_session = "SELECT * FROM `user_table` WHERE user_email = '$email'";
@@ -353,11 +352,6 @@
                 VALUES ($get_product_id,1,37,$user_id)
                 ";
                 $result_query = mysqli_query($conn,$insert_query);
-                echo "
-                    <script>
-                        alert('Data Added to Cart');
-                    </script>
-                ";
                 echo "
                     <script>
                         window.open('index.php','_self')
@@ -378,7 +372,7 @@
                 $row_data = mysqli_fetch_assoc($result);
                 $user_id = $row_data['user_id'];
                 $_SESSION['user_id'] = $user_id;
-    
+
                 $select_query = "SELECT * FROM `cart_details` WHERE user_id = $user_id";
                 $result_query = mysqli_query($conn,$select_query);
                 $num_of_rows = mysqli_num_rows($result_query);
@@ -390,12 +384,14 @@
                 $row_data = mysqli_fetch_assoc($result);
                 $user_id = $row_data['user_id'];
                 $_SESSION['user_id'] = $user_id;
-    
                 $select_query = "SELECT * FROM `cart_details` WHERE user_id = $user_id";
                 $result_query = mysqli_query($conn,$select_query);
                 $num_of_rows = mysqli_num_rows($result_query);
             }
             echo $num_of_rows;
+        }else{
+            $total = 0;
+            echo $total;        
         }
     }
 

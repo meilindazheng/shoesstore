@@ -171,40 +171,42 @@
                                         $product_values = array_sum($product_price);
                                         $sub_total = $price_table * $product_quantity;
                                         $total+= $sub_total;
-                            ?>
-                            <tr>
-                                <td><?php echo$product_title ?></td>
-                                <td><img src="./images/<?php echo$product_image1 ?>" alt="" style="width:75px; height =75px; object-fit:contain;"></td>
-                                <td><?php echo $product_size?></td>
-                                <td><?php echo $price_table ?></td>
-                                <td><?php echo $product_quantity?></td>
-                                <td><?php echo $price_table * $product_quantity?></td>
-                                <td><input type="checkbox" name="removeitem[]" id="" 
-                                    value="
-                                        <?php
-                                            echo $product_id;
-                                        ?>">
-                                </td>
-                                <td>
-                                    
-                                    <input type="submit" value="Remove Cart" class="text-white border-0 p-2 my-2 rounded  mx-3"  style="background-color: #344055;" name = "remove_cart">
-                                    <!-- <a href="cart.php?update_cart = <?php echo $product_id ?>"><input type="submit" value="Update Cart" class="text-white border-0 p-2 my-2 rounded  mx-3"  style="background-color: #344055;" name = "update_cart"></a> -->
-                                    <a href="edit_carts.php?edit_cart=<?php echo $cart_id ?>"><i class="fa-solid fa-pen-to-square"></i></a>
-                                </td>
-                            </tr>
+                                        ?>
+                                        <tr>
+                                            <td><?php echo$product_title ?></td>
+                                            <td><img src="./images/<?php echo$product_image1 ?>" alt="" style="width:75px; height =75px; object-fit:contain;"></td>
+                                            <td><?php echo $product_size?></td>
+                                            <td><?php echo $price_table ?></td>
+                                            <td><?php echo $product_quantity?></td>
+                                            <td><?php echo $price_table * $product_quantity?></td>
+                                            <td><input type="checkbox" name="removeitem[]" id="" 
+                                                value="
+                                                    <?php
+                                                        echo $product_id;
+                                                    ?>">
+                                            </td>
+                                            <td>
+                                                
+                                                <input type="submit" value="Remove Cart" class="text-white border-0 p-2 my-2 rounded  mx-3"  style="background-color: #344055;" name = "remove_cart">
+                                                <!-- <a href="cart.php?update_cart = <?php echo $product_id ?>"><input type="submit" value="Update Cart" class="text-white border-0 p-2 my-2 rounded  mx-3"  style="background-color: #344055;" name = "update_cart"></a> -->
+                                                <a href="edit_carts.php?edit_cart=<?php echo $cart_id ?>"><i class="fa-solid fa-pen-to-square"></i></a>
+                                            </td>
+                                        </tr>
                             <?php
+                                    }
+                                    }
+                            }else{
+                                echo "<h2 class='text-center'>Cart is Empty!</h2>";
                             }
-                            }
-                        }else{
-                            echo "<h2 class='text-center'>Cart is Empty!</h2>";
-                        }
                         ?>
                     </tbody>
                 </table>
                 <!-- Subtotal -->
                 <div class="d-flex">
                     <?php
-                        if(isset($_SESSION['email'])){
+                        if(!isset($_SESSION['email'])){
+                            echo "<script>window.open('./users_area/user_login.php','_self')</script>";
+                        }else{
                             $email = $_SESSION['email'];
                             $select_query_session = "SELECT * FROM `user_table` WHERE user_email = '$email'";
                             $result = mysqli_query($conn,$select_query_session);
@@ -225,8 +227,6 @@
                             if(isset($_POST['continue_shopping'])){
                                 echo"<script>window.open('index.php','_self')</script>";
                             }
-                        }else{
-                            echo "<script>window.open('./users_area/user_login.php','_self')</script>";
                         }
                     ?>
                 </div>
