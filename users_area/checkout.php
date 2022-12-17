@@ -113,7 +113,6 @@
     <div class="row">
         <div class="col-md-12">
             <!-- display products -->
-            <div class="row px-3">
                 <?php
                 if(!isset($_SESSION['email'])){
                     include('user_login.php');
@@ -121,13 +120,12 @@
                     include('payment.php');
                 }
                 ?>
-            </div>
         </div>
     </div>
-    <!-- Last Child -->
+    <!-- Last Child
     <?php
         include('../includes/footer.php');
-    ?>
+    ?> -->
     </div>
     <!-- Bootstrap JS Link -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
