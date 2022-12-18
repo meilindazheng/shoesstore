@@ -432,4 +432,30 @@
             echo $total;
         }
     }
+    // function get user order details
+    function get_user_order_details(){
+        global $conn;
+        $email = $_SESSION['email'];
+        $get_details_query = "SELECT * FROM `user_table` WHERE user_email = '$email'";
+        $result_get_details_query = mysqli_query($conn,$get_details_query);
+        while($row = mysqli_fetch_assoc($result_get_details_query)){
+            $user_id = $row['user_id'];
+            if(!isset($_GET['edit_account'])){
+                if(!isset($_GET['my_orders'])){
+                    if(!isset($_GET['delete_account'])){
+                        $get_pending_order_query = "SELECT * FROM `user_order` WHERE user_id = $user_id AND order_status = 'pending'";
+                        $result_get_pending_order_query = mysqli_query($conn,$get_pending_order_query);
+                        $row_counts = mysqli_num_rows($result_get_pending_order_query);
+                        if($row_counts>0){
+                            echo "<h3>You have <span class='text-danger'>$row_counts</span> pending orders!</h3>
+                            <button  class ='text-white border-0 p-2 my-2 rounded  '  style='background-color: #344055;'><a href='profile.php?my_orders'  class = 'text-light' style='text-decoration:none;'>View Pending Orders</a></button>";
+                        }else{
+                            echo "<h3>You have <span class='text-danger'>0</span> pending orders!</h3>
+                            <button  class ='text-white border-0 p-2 my-2 rounded  '  style='background-color: #344055;'><a href='../index.php'  class = 'text-light' style='text-decoration:none;'>View Pending Orders</a></button>";
+                        }
+                    }
+                }
+            }
+        }
+    }
 ?>
