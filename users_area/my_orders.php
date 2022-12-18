@@ -53,7 +53,7 @@
                         <td class='text-center'>$user_data_order_invoice_number</td>
                         <td class='text-center'>$user_data_order_date</td>
                         <td class='text-center'>$user_data_order_status</td>
-                        <td class='text-center'><a href='confirm_payment.php'>Confirm</td>
+                        <td class='text-center'><a href='confirm_payment.php?order_id=$user_data_order_number'>Confirm</td>
                     </tr>
                     
                     ";

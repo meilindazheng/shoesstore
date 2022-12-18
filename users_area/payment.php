@@ -34,14 +34,7 @@
     <div class="container">
         <h2 class="text-center mb-4">Confirmation and Payment Options</h2>
         <div class="row">
-            <div class="col-md-4">
-                <label for="size" class="mb-1">Payment Method</label>
-                    <select class="form-control" id="size" name="size">
-                    <option>VA Bank Central Asia</option>
-                    <option>VA Bank Rakyat Indonesia</option>
-                    <option>VA Bank Negara Indonesia</option>
-                    <option>VA Bank Mandiri</option>
-                </select>
+            <div class="col-md-2">
                 <div class="d-flex">
                 <?php
                         if(!isset($_SESSION['email'])){
@@ -83,7 +76,7 @@
                 </div>
                 <button class ='text-white border-0 px-5 py-2 my-3 rounded'  style='background-color: #344055;'><a href='order.php?user_id=<?php echo $user_id ?>' class = 'text-light' style='text-decoration:none;'>Pay Now</a></button>
             </div>
-            <div class="col-md-8">
+            <div class="col-md-10">
                 <?php
                     $email = $_SESSION['email'];
                     $select_query_session = "SELECT * FROM `user_table` WHERE user_email = '$email'";
