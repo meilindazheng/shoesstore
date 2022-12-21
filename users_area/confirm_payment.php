@@ -24,6 +24,9 @@
         }
         $update_query = "UPDATE `user_order` SET order_status= 'completed' WHERE order_id = $order_id";
         $run_update_query = mysqli_query($conn,$update_query);
+
+        $update_order_pending = "UPDATE `orders_pending` SET order_status = 'completed' WHERE invoice_number = $invoice";
+        $run_update_order_pending = mysqli_query($conn,$update_order_pending);
     }
 ?>
 <!DOCTYPE html>
