@@ -451,7 +451,7 @@
                             <button  class ='text-white border-0 p-2 my-2 rounded  '  style='background-color: #344055;'><a href='profile.php?my_orders'  class = 'text-light' style='text-decoration:none;'>View Pending Orders</a></button>";
                         }else{
                             echo "<h3>You have <span class='text-danger'>0</span> pending orders!</h3>
-                            <button  class ='text-white border-0 p-2 my-2 rounded  '  style='background-color: #344055;'><a href='../index.php'  class = 'text-light' style='text-decoration:none;'>View Pending Orders</a></button>";
+                            <button  class ='text-white border-0 p-2 my-2 rounded  '  style='background-color: #344055;'><a href='../index.php'  class = 'text-light' style='text-decoration:none;'>Shop Now!</a></button>";
                         }
                     }
                 }

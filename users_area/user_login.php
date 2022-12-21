@@ -51,9 +51,18 @@
         $result = mysqli_query($conn,$select_query);
         $row_count = mysqli_num_rows($result);
         $row_data = mysqli_fetch_assoc($result);
+        $role = $row_data['user_role'];
+        $com1 = strcmp($role,"Admin");
+        $com2 = strcmp($role,"User");
         if($row_count == 1){
-            $_SESSION['email'] = $user_email;
-            echo "<script>window.open('../index.php','_self')</script>";
+            if($com1 == 0){
+                $_SESSION['email'] = $user_email;
+                echo"<script>window.open('../admin/index.php','_self')</script>";
+            }
+            else if($com2==0){
+                $_SESSION['email'] = $user_email;
+                echo"<script>window.open('../index.php','_self')</script>";
+            }
         }else{
             echo "<script>alert('Invalid Credentials')</script>";
         }

@@ -1,3 +1,8 @@
+<?php
+    include('../includes/connect.php');
+    include('../functions/common_function.php');
+    // session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,6 +18,9 @@
         .logo{
             height: 4%;
             width: 4%;
+        }
+        body{
+            overflow-x :hidden;
         }
     </style>
 </head>
@@ -45,7 +53,7 @@
                         </a>
                     </button>
                     <button class="btn btn-sm"  style="background-color: #344055;">
-                        <a href="" class="btn text-white">
+                        <a href="index.php?view_products" class="btn text-white">
                             View Products
                         </a>
                     </button>
@@ -102,10 +110,13 @@
             if(isset($_GET['insert_brand'])){
                 include('insert_brands.php');
             }
+            if(isset($_GET['view_products'])){
+                include('view_products.php');
+            }
         ?>
     </div>
     <!-- Last Content -->
-    <div class="p-1" style="background-color: #eeeee4; position: absolute; bottom:0; width:100%">
+    <div class="p-1" style="background-color: #eeeee4; bottom:0; width:100%">
         <p class="text-center">&copy; Meilinda & Keyko</p>
     </div>
     <!-- Bootstrap JS Link -->

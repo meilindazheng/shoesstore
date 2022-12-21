@@ -50,6 +50,13 @@
                         <label for="user_contact" class="form-label">Contact</label>
                         <input type="text" id="user_contact" class="form-control" placeholder="Name" autocomplete="off" required="required" name="user_contact">
                     </div>
+                    <div>
+                        <label for="role" class="form-label">Role</label>
+                        <select class="form-control mb-3" id="payment_method" name="role" id="role">
+                            <option>User</option>
+                            <option>Admin</option>
+                        </select>
+                    </div>
                     <div >
                         <input type="submit" value="Register" class="text-white border-0 p-2 my-2 rounded" style="background-color: #344055;" name="user_register">
                         <p class="small fw-bold mt-2 pt-1">Already have account? <a href="user_login.php" class="text-danger">Login</a></p>
@@ -72,7 +79,7 @@
         $conf_user_password = $_POST['conf_user_password'];
         $user_address = $_POST['user_address'];
         $user_contact = $_POST['user_contact'];
-
+        $user_role = $_POST['role'];
 
         // select query
         $select_query = "SELECT * FROM `user_table` WHERE user_name = '$user_username' OR user_email = '$user_email'";
@@ -84,10 +91,10 @@
             echo "<script>alert('Password doesn't match!')</script>";
         }
         else{
-            $insert_query = "INSERT INTO `user_table` (user_id, user_name,user_email,user_password, user_address,user_mobile)
-            VALUES('','$user_username', '$user_email','$user_password ','$user_address','$user_contact')";
+            $insert_query = "INSERT INTO `user_table` (user_id, user_name,user_email,user_password, user_address,user_mobile,user_role)
+            VALUES('','$user_username', '$user_email','$user_password ','$user_address','$user_contact','$user_role')";
             $sql_execute = mysqli_query($conn,$insert_query);
-            echo "<script>window.open('../index.php','_self')</script>";
+            echo "<script>window.open('user_login.php','_self')</script>";
         }
     }
     

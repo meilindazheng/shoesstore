@@ -140,9 +140,6 @@
                     <a href="profile.php?my_orders" class="nav-link">My Orders</a>
                 </li>
                 <li class="nav-item">
-                    <a href="profile.php?delete_account" class="nav-link">Delete Account</a>
-                </li>
-                <li class="nav-item">
                     <a href="user_logout.php" class="nav-link">Logout</a>
                 </li>
             </ul>
