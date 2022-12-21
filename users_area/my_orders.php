@@ -52,13 +52,18 @@
                         <td class='text-center'>$user_data_order_total_products</td>
                         <td class='text-center'>$user_data_order_invoice_number</td>
                         <td class='text-center'>$user_data_order_date</td>
-                        <td class='text-center'>$user_data_order_status</td>
-                        <td class='text-center'><a href='confirm_payment.php?order_id=$user_data_order_number'>Confirm</td>
-                    </tr>
-                    
-                    ";
-                };
-            ?>
+                        <td class='text-center'>$user_data_order_status</td>";
+                ?>
+                        <?php
+                        if($user_data_order_status=='Complete'){
+                            echo"<td class='text-center'>Paid</td>";
+                        }else{
+                            echo"
+                                <td class='text-center'><a href='confirm_payment.php?order_id=$user_data_order_number'>Confirm</td>
+                                </tr>";
+                        }
+                }
+                ?>
         </tbody>
     </table>
 </body>
