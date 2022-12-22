@@ -7,7 +7,7 @@
     <title>Document</title>
     <style>
         .pimage{
-            width:10%;
+            width:100px;
             object-fit:contain;
         }
     </style>
@@ -53,7 +53,7 @@
                             ?>
                         </td>
                         <td><?php echo $product_status?></td>
-                        <td class='text-center'><a href=''><i class='fa-solid fa-pen-to-square' style='color: #344055;'></i></a></td>
+                        <td class='text-center'><a href='index.php?edit_products'><i class='fa-solid fa-pen-to-square' style='color: #344055;'></i></a></td>
                         <td class='text-center'><a href=''><i class='fa-solid fa-trash' style='color: #344055;'></i></a></td>
                     </tr>
                     <?php
