@@ -63,7 +63,7 @@
                         </a>
                     </button>
                     <button class="btn btn-sm"  style="background-color: #344055;">
-                        <a href="" class="btn text-white">
+                        <a href="index.php?view_category" class="btn text-white">
                             View Categories
                         </a>
                     </button>
@@ -118,6 +118,12 @@
             }
             if(isset($_GET['delete_products'])){
                 include('delete_products.php');
+            }
+            if(isset($_GET['view_category'])){
+                include('view_categories.php');
+            }
+            if(isset($_GET['edit_categories'])){
+                include('edit_categories.php');
             }
         ?>
     </div>
