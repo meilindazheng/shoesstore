@@ -54,7 +54,7 @@
                         </td>
                         <td><?php echo $product_status?></td>
                         <td class='text-center'><a href='index.php?edit_products=<?php echo $product_id ?>'><i class='fa-solid fa-pen-to-square' style='color: #344055;'></i></a></td>
-                        <td class='text-center'><a href=''><i class='fa-solid fa-trash' style='color: #344055;'></i></a></td>
+                        <td class='text-center'><a href='index.php?delete_products=<?php echo $product_id ?>'><i class='fa-solid fa-trash' style='color: #344055;'></i></a></td>
                     </tr>
                     <?php
                 }
