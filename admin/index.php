@@ -73,7 +73,7 @@
                         </a>
                     </button>
                     <button class="btn btn-sm"  style="background-color: #344055;">
-                        <a href="" class="btn text-white">
+                        <a href="index.php?view_brands" class="btn text-white">
                             View Brand
                         </a>
                     </button>
@@ -124,6 +124,18 @@
             }
             if(isset($_GET['edit_categories'])){
                 include('edit_categories.php');
+            }
+            if(isset($_GET['delete_categories'])){
+                include('delete_categories.php');
+            }
+            if(isset($_GET['view_brands'])){
+                include('view_brands.php');
+            }
+            if(isset($_GET['edit_brands'])){
+                include('edit_brands.php');
+            }
+            if(isset($_GET['delete_brands'])){
+                include('delete_brands.php');
             }
         ?>
     </div>
