@@ -1,3 +1,7 @@
+<?php
+    include('../includes/connect.php');
+    include('../functions/common_function.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,8 +22,8 @@
                 <form action="" method="post">
                     <div class="form-outline mb-4">
                         <!-- username -->
-                        <label for="admin_adminname" class="form-label">Admin name</label>
-                        <input type="text" id="admin_adminname" class="form-control" placeholder="Name" autocomplete="off" required="required" name="admin_adminname">
+                        <label for="admin_username" class="form-label">Admin name</label>
+                        <input type="text" id="admin_username" class="form-control" placeholder="Name" autocomplete="off" required="required" name="admin_username">
                     </div>
                     <div class="form-outline mb-4">
                         <!-- email -->
@@ -47,3 +51,30 @@
 
 </body>
 </html>
+
+<!-- php logic -->
+<?php
+    if(isset($_POST['admin_register'])){
+        $admin_username = $_POST['admin_username'];
+        $admin_email = $_POST['admin_email'];
+        $admin_password = $_POST['admin_password'];
+        $conf_admin_password = $_POST['conf_admin_password'];
+
+        // select query
+        $select_query = "SELECT * FROM `user_table` WHERE user_name = '$admin_username' OR user_email = '$admin_email'";
+        $result = mysqli_query($conn,$select_query);
+        $num_of_rows = mysqli_num_rows($result);
+        if($num_of_rows>0){
+            echo "<script>alert('Username or email already exist!')</script>";
+        }else if($admin_password != $conf_admin_password){
+            echo "<script>alert('Password doesn't match!')</script>";
+        }
+        else{
+            $insert_query = "INSERT INTO `user_table` (user_id, user_name,user_email,user_password,user_role)
+            VALUES('','$admin_username', '$admin_email','$admin_password ','Admin')";
+            $sql_execute = mysqli_query($conn,$insert_query);
+            echo "<script>window.open('admin_login.php','_self')</script>";
+        }
+    }
+    
+?>

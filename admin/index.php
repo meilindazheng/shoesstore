@@ -1,7 +1,7 @@
 <?php
     include('../includes/connect.php');
     include('../functions/common_function.php');
-    // session_start();
+    session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,9 +32,27 @@
                     <img src="../images/logo.png" alt="" class="logo">
                     <nav class="navbar navbar-expand-lg">
                         <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a href="" class="nav-link text-white">Welcome Guest</a>
-                            </li>
+                            <?php
+                            if(!isset($_SESSION['admin_email'])){
+                                echo"
+                                <li class='nav-item'>
+                                    <a href='#' class='nav-link text-white'>Welcome Guest!</a>
+                                </li>
+                                ";
+                            }else{
+                                $email = $_SESSION['admin_email'];
+                                $select_query = "SELECT * FROM `user_table` WHERE user_email = '$email'";
+                                $result = mysqli_query($conn,$select_query);
+                                $row_data = mysqli_fetch_assoc($result);
+                                $name = $row_data['user_name'];
+                                $_SESSION['name'] = $name;
+                                echo"
+                                <li class='nav-item'>
+                                    <a href='#' class='nav-link text-white'>Welcome ".$_SESSION['name']."</a>
+                                </li>
+                                ";
+                            }
+                            ?>
                         </ul>
                     </nav>
                 </div>
@@ -47,56 +65,66 @@
         <div class="row">
             <div class="col-md-12 p-2">
                 <div class="text-center">
-                    <button class="btn btn-sm"  style="background-color: #344055;" style="background-color: #344055;">
-                        <a href="insert_product.php" class="btn text-white">
-                            Insert Products
-                        </a>
-                    </button>
-                    <button class="btn btn-sm"  style="background-color: #344055;">
-                        <a href="index.php?view_products" class="btn text-white">
-                            View Products
-                        </a>
-                    </button>
-                    <button class="btn btn-sm"  style="background-color: #344055;">
-                        <a href="index.php?insert_category" class="btn text-white ">
-                            Insert Categories
-                        </a>
-                    </button>
-                    <button class="btn btn-sm"  style="background-color: #344055;">
-                        <a href="index.php?view_category" class="btn text-white">
-                            View Categories
-                        </a>
-                    </button>
-                    <button class="btn btn-sm"  style="background-color: #344055;">
-                        <a href="index.php?insert_brand" class="btn text-white">
-                            Insert Brand
-                        </a>
-                    </button>
-                    <button class="btn btn-sm"  style="background-color: #344055;">
-                        <a href="index.php?view_brands" class="btn text-white">
-                            View Brand
-                        </a>
-                    </button>
-                    <button class="btn btn-sm"  style="background-color: #344055;">
-                        <a href="index.php?view_orders" class="btn text-white">
-                            All Orders
-                        </a>
-                    </button>
-                    <button class="btn btn-sm"  style="background-color: #344055;">
-                        <a href="index.php?view_payments" class="btn text-white">
-                            All Payment
-                        </a>
-                    </button>
-                    <button class="btn btn-sm"  style="background-color: #344055;">
-                        <a href="index.php?view_users" class="btn text-white">
-                            List Users
-                        </a>
-                    </button>
-                    <button class="btn btn-sm"  style="background-color: #344055;">
-                        <a href="" class="btn text-white">
-                            Admin Logout
-                        </a>
-                    </button>
+                    <?php
+                        if(isset($_SESSION['admin_email'])){
+                            echo "
+                            <button class='btn btn-sm'  style='background-color: #344055;' style='background-color: #344055;'>
+                                <a href='insert_product.php' class='btn text-white'>
+                                    Insert Products
+                                </a>
+                            </button>
+                            <button class='btn btn-sm'  style='background-color: #344055;'>
+                                <a href='index.php?view_products' class='btn text-white'>
+                                    View Products
+                                </a>
+                            </button>
+                            <button class='btn btn-sm'  style='background-color: #344055;'>
+                                <a href='index.php?insert_category' class='btn text-white '>
+                                    Insert Categories
+                                </a>
+                            </button>
+                            <button class='btn btn-sm'  style='background-color: #344055;'>
+                                <a href='index.php?view_category' class='btn text-white'>
+                                    View Categories
+                                </a>
+                            </button>
+                            <button class='btn btn-sm'  style='background-color: #344055;'>
+                                <a href='index.php?insert_brand' class='btn text-white'>
+                                    Insert Brand
+                                </a>
+                            </button>
+                            <button class='btn btn-sm'  style='background-color: #344055;'>
+                                <a href='index.php?view_brands' class='btn text-white'>
+                                    View Brand
+                                </a>
+                            </button>
+                            <button class='btn btn-sm'  style='background-color: #344055;'>
+                                <a href='index.php?view_orders' class='btn text-white'>
+                                    All Orders
+                                </a>
+                            </button>
+                            <button class='btn btn-sm'  style='background-color: #344055;'>
+                                <a href='index.php?view_payments' class='btn text-white'>
+                                    All Payment
+                                </a>
+                            </button>
+                            <button class='btn btn-sm'  style='background-color: #344055;'>
+                                <a href='index.php?view_users' class='btn text-white'>
+                                    List Users
+                                </a>
+                            </button>
+                            <button class='btn btn-sm'  style='background-color: #344055;'>
+                                <a href='admin_logout.php' class='btn text-white'>
+                                    Admin Logout
+                                </a>
+                            </button>
+                            ";
+                        }else{
+                            echo"<div class='mt-10'>
+                                    <h5><a href='admin_login.php' class='nav-link text-danger'>Login</a></h5> to perform Admin's action!
+                                </div>";
+                        }
+                    ?>
                 </div>
             </div>
         </div>
