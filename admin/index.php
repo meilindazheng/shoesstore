@@ -78,17 +78,17 @@
                         </a>
                     </button>
                     <button class="btn btn-sm"  style="background-color: #344055;">
-                        <a href="" class="btn text-white">
+                        <a href="index.php?view_orders" class="btn text-white">
                             All Orders
                         </a>
                     </button>
                     <button class="btn btn-sm"  style="background-color: #344055;">
-                        <a href="" class="btn text-white">
+                        <a href="index.php?view_payments" class="btn text-white">
                             All Payment
                         </a>
                     </button>
                     <button class="btn btn-sm"  style="background-color: #344055;">
-                        <a href="" class="btn text-white">
+                        <a href="index.php?view_users" class="btn text-white">
                             List Users
                         </a>
                     </button>
@@ -136,6 +136,15 @@
             }
             if(isset($_GET['delete_brands'])){
                 include('delete_brands.php');
+            }
+            if(isset($_GET['view_orders'])){
+                include('view_orders.php');
+            }
+            if(isset($_GET['view_payments'])){
+                include('view_payments.php');
+            }
+            if(isset($_GET['view_users'])){
+                include('view_users.php');
             }
         ?>
     </div>
