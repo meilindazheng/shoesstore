@@ -16,20 +16,6 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/`shoes_store` /*!40100 DEFAULT CHARACTER
 
 USE `shoes_store`;
 
-/*Table structure for table `admin_table` */
-
-DROP TABLE IF EXISTS `admin_table`;
-
-CREATE TABLE `admin_table` (
-  `admin_id` int(11) NOT NULL AUTO_INCREMENT,
-  `admin_name` varchar(100) DEFAULT NULL,
-  `admin_email` varchar(200) DEFAULT NULL,
-  `admin_password` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`admin_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
-/*Data for the table `admin_table` */
-
 /*Table structure for table `brands` */
 
 DROP TABLE IF EXISTS `brands`;
@@ -47,28 +33,26 @@ insert  into `brands`(`brand_id`,`brand_title`) values
 (2,'Puma'),
 (3,'Nike'),
 (4,'Hush Puppies'),
-(5,'Converse'),
-(6,'Crocs'),
-(9,'Reebok');
+(5,'Converse');
 
 /*Table structure for table `cart_details` */
 
 DROP TABLE IF EXISTS `cart_details`;
 
 CREATE TABLE `cart_details` (
-  `product_id` int(11) NOT NULL,
-  `ip_address` varchar(255) DEFAULT NULL,
+  `cart_id` int(11) NOT NULL AUTO_INCREMENT,
+  `product_id` int(11) DEFAULT NULL,
   `quantity` int(100) DEFAULT NULL,
   `size` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`product_id`),
-  CONSTRAINT `cart_details_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `user_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`cart_id`),
+  KEY `product_id` (`product_id`),
+  KEY `user_id` (`user_id`),
+  CONSTRAINT `cart_details_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `cart_details_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user_table` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `cart_details` */
-
-insert  into `cart_details`(`product_id`,`ip_address`,`quantity`,`size`) values 
-(1,'::1',1,'35'),
-(2,'::1',2,'35');
 
 /*Table structure for table `categories` */
 
@@ -78,35 +62,40 @@ CREATE TABLE `categories` (
   `category_id` int(11) NOT NULL AUTO_INCREMENT,
   `category_title` varchar(255) NOT NULL,
   PRIMARY KEY (`category_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `categories` */
 
 insert  into `categories`(`category_id`,`category_title`) values 
-(1,'Run'),
-(2,'Walk'),
-(3,'Casual'),
-(4,'Schools'),
-(5,'Sporty');
+(1,'Running'),
+(2,'Walking'),
+(3,'Sporty'),
+(4,'Classic'),
+(5,'Retro');
 
 /*Table structure for table `orders_pending` */
 
 DROP TABLE IF EXISTS `orders_pending`;
 
 CREATE TABLE `orders_pending` (
-  `order_pending_id` int(11) NOT NULL,
   `user_id` int(11) DEFAULT NULL,
   `invoice_number` int(255) DEFAULT NULL,
   `product_id` int(11) DEFAULT NULL,
   `quantity` int(255) DEFAULT NULL,
   `order_status` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`order_pending_id`),
-  KEY `user_id` (`user_id`),
   KEY `product_id` (`product_id`),
-  CONSTRAINT `orders_pending_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`)
+  KEY `user_id` (`user_id`),
+  CONSTRAINT `orders_pending_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user_table` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `orders_pending` */
+
+insert  into `orders_pending`(`user_id`,`invoice_number`,`product_id`,`quantity`,`order_status`) values 
+(1,1665319319,9,1,'completed'),
+(1,1665319319,4,2,'completed'),
+(1,1147838438,9,1,'completed'),
+(1,841427558,11,1,'completed'),
+(1,596202242,6,4,'completed');
 
 /*Table structure for table `products` */
 
@@ -130,12 +119,12 @@ CREATE TABLE `products` (
   KEY `brand_id` (`brand_id`),
   CONSTRAINT `products_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`category_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `products_ibfk_2` FOREIGN KEY (`brand_id`) REFERENCES `brands` (`brand_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `products` */
 
 insert  into `products`(`product_id`,`product_title`,`product_description`,`product_keywords`,`category_id`,`brand_id`,`product_image1`,`product_image2`,`product_image3`,`product_price`,`date`,`status`) values 
-(1,'Puma Sporty Unisex J-481','Chic Sporty Looks to Make You Feel More Comfortable','Puma, Sporty, Unisex',5,2,'puma_1.jpg','puma_2.jpg','puma_3.jpg','1750000','2022-12-10 17:24:46','true'),
+(1,'Puma Sporty Rainbow J-4812','Cools Looks','Puma, Cools, Sporty',1,2,'puma_1.jpg','puma_6.jpg','puma_2.jpg','1750000','2022-12-23 17:40:40','true'),
 (2,'Puma Classic Woman X-935','Designed in Casual Ways , Suitable for daily Casual Usage','Puma, Woman, Classic',3,2,'puma_6.jpg','puma_1.jpg','puma_2.jpg','1650000','2022-12-10 17:38:19','true'),
 (3,'Puma BnW Special Edition S-294','Bringing Out 90s Style, Absolutely will Complement Your Outfit','Puma, Black and White',4,2,'puma_3.jpg','puma_4.jpg','puma_5.jpg','2400000','2022-12-10 17:42:31','true'),
 (4,'Puma All White W-470','With a Clean White Looks, Match You on Any Occasions','Puma , White',1,2,'puma_4.jpg','puma_5.jpg','puma_6.jpg','1850000','2022-12-10 17:40:16','true'),
@@ -153,19 +142,25 @@ insert  into `products`(`product_id`,`product_title`,`product_description`,`prod
 DROP TABLE IF EXISTS `user_order`;
 
 CREATE TABLE `user_order` (
-  `order_id` int(11) NOT NULL,
+  `order_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT NULL,
   `amount_due` int(255) DEFAULT NULL,
   `invoice_number` int(255) DEFAULT NULL,
   `total_products` int(255) DEFAULT NULL,
   `order_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `order_status` varchar(255) DEFAULT NULL,
-  `size` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`order_id`),
-  KEY `user_id` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  KEY `user_id` (`user_id`),
+  CONSTRAINT `user_order_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user_table` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `user_order` */
+
+insert  into `user_order`(`order_id`,`user_id`,`amount_due`,`invoice_number`,`total_products`,`order_date`,`order_status`) values 
+(1,1,5975000,1665319319,3,'2022-12-24 11:59:10','completed'),
+(2,1,2275000,1147838438,1,'2022-12-24 12:31:41','completed'),
+(3,1,2375000,841427558,1,'2022-12-25 15:09:45','completed'),
+(4,1,7000000,596202242,4,'2022-12-25 15:10:12','completed');
 
 /*Table structure for table `user_payments` */
 
@@ -180,10 +175,14 @@ CREATE TABLE `user_payments` (
   `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`payment_id`),
   KEY `order_id` (`order_id`),
-  CONSTRAINT `user_payments_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `user_order` (`order_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  CONSTRAINT `user_payments_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `user_table` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `user_payments` */
+
+insert  into `user_payments`(`payment_id`,`order_id`,`invoice_number`,`amount`,`payment_mode`,`date`) values 
+(1,1,1665319319,5975000,'VA Bank Central Asia','2022-12-24 11:59:10'),
+(2,2,1147838438,2275000,'VA Bank Rakyat Indonesia','2022-12-24 12:31:41');
 
 /*Table structure for table `user_table` */
 
@@ -194,13 +193,19 @@ CREATE TABLE `user_table` (
   `user_name` varchar(100) DEFAULT NULL,
   `user_email` varchar(100) DEFAULT NULL,
   `user_password` varchar(255) DEFAULT NULL,
-  `user_ip` varchar(100) DEFAULT NULL,
   `user_address` varchar(255) DEFAULT NULL,
   `user_mobile` varchar(20) DEFAULT NULL,
+  `user_role` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `user_table` */
+
+insert  into `user_table`(`user_id`,`user_name`,`user_email`,`user_password`,`user_address`,`user_mobile`,`user_role`) values 
+(1,'Meilinda Zheng','2073013@maranatha.ac.id','1234 ','Bandung','08126488963','User'),
+(2,'Keyko','2073016@maranatha.ac.id','1234','Bandung','08128428112','User'),
+(5,'admin','admin@maranatha.ac.id','1234 ','Bandung','0812319328','Admin'),
+(6,'John','John@maranatha.ac.id','1234 ','Bandung','093127321738','User');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

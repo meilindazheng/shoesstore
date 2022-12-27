@@ -110,7 +110,7 @@
                 }else{
                     echo "
                     <li class='nav-item'>
-                        <a href='./users_area/user_logout.php' class='nav-link'>Logout</a>
+                        <a href='user_logout.php' class='nav-link'>Logout</a>
                     </li>
                     ";
                 }
